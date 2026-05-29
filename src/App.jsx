@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Login from './Pages/Login.jsx'
+import Header from './Components/Header.jsx'
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
     path='/login'
     element={
       <>
+      <Header />
       <Login/>
       </>
     }
