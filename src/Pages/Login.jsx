@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 const Login = () => {
 
@@ -15,7 +16,10 @@ const Login = () => {
   return (
     <>
       <div
-      className='w-full min-h-screen flex flex-col items-center justify-center gap-10'>
+      className='min-h-screen w-full flex justify-center'>
+        <div
+      className='min-h-screen px-10 rounded-lg flex flex-col items-center justify-center gap-10
+      dark:bg-neutral-900 bg-slate-100'>
 
         {/* Login Text */}
         <div
@@ -29,45 +33,66 @@ const Login = () => {
         {/* Form */}
         <div className="flex flex-col">
           <label htmlFor="email"
-        className='p-2 sm:w-sm not-sm:w-[20rem] not-sm:mx-5 text-lg
+        className='p-2 sm:w-sm not-sm:w-60 not-sm:mx-5 text-lg
         dark:text-white
         text-black
         ' >
           Email
         </label>
 
-        <input 
-        type="email"
-        id='email'
-        placeholder='Email'
-        className='border sm:w-sm not-sm:w-[20rem] not-sm:mx-5 p-2 px-4 rounded-lg 
-        dark:border-[#5e5e5e] dark:placeholder:text-[#b9b9b9] dark:text-white
-        dark:outline-white outline-black
-        border-[#3d3d3d] placeholder:text-[#5f5f5f] text-black
-        '
-        onClick={e => {handleForm(e)}} />
+
+        <div
+        className='flex align-middle'>
+
+          <i className="bi bi-envelope-fill
+          dark:text-white text-black text-xl
+          border-t border-l border-b p-2 px-4 rounded-l-lg
+          dark:border-[#5e5e5e] border-[#3d3d3d]" />
+
+          <input 
+          type="email"
+          id='email'
+          placeholder='Email'
+          className='border sm:w-sm not-sm:w-60 p-2 px-4 rounded-r-lg 
+          dark:border-[#5e5e5e] dark:placeholder:text-[#b9b9b9] dark:text-white
+          outline-none
+          border-[#3d3d3d] placeholder:text-[#5f5f5f] text-black
+          '
+          onClick={e => {handleForm(e)}} />
+
+        </div>
+
+
         </div>
 
         
         <div className="flex flex-col">
           <label htmlFor="email"
-        className='p-2 sm:w-sm not-sm:w-[20rem] not-sm:mx-5 text-lg
+        className='p-2 sm:w-sm not-sm:w-60 text-lg
         dark:text-white
         text-black
         ' >
           Password
         </label>
 
-        <input 
-        type="password"
-        id='password'
-        placeholder='Password'
-        className='border sm:w-sm not-sm:w-[20rem] not-sm:mx-5 p-2 px-4 rounded-lg 
-        dark:border-[#5e5e5e] dark:placeholder:text-[#b9b9b9] dark:text-white
-        dark:outline-white outline-black
-        border-[#3d3d3d] placeholder:text-[#5f5f5f] text-black
-        '
-        onClick={e => {handleForm(e)}} />
+        <div
+        className='flex align-middle'>
+
+          <i className="bi bi-key-fill
+          dark:text-white text-black text-xl
+          border-t border-l border-b p-2 px-4 rounded-l-lg
+          dark:border-[#5e5e5e] border-[#3d3d3d]" />
+
+          <input 
+          type="password"
+          id='password'
+          placeholder='Password'
+          className='border sm:w-sm not-sm:w-60 p-2 px-4 rounded-r-lg 
+          dark:border-[#5e5e5e] dark:placeholder:text-[#b9b9b9] dark:text-white
+          border-[#3d3d3d] placeholder:text-[#5f5f5f] text-black outline-none
+          '
+          onClick={e => {handleForm(e)}} />
+        </div>
         </div>
 
 
@@ -82,6 +107,7 @@ const Login = () => {
           Sign Up
         </div>
 
+      </div>
       </div>
     </>
   )
