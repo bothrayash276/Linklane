@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import userLogin from '../api/User'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
@@ -7,10 +9,17 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  const navigate = useNavigate()
+
   // Fxn to handle form
   const handleForm = e => {
     if (e.target.id === 'email') setEmail(e.target.value)
     else if (e.target.id === 'password') setPassword(e.target.value)
+  }
+
+  const logInUser = async () => {
+    const result = await userLogin(email, password)
+    if (result) navigate('/')
   }
 
   return (
@@ -58,7 +67,7 @@ const Login = () => {
           outline-none
           border-[#3d3d3d] placeholder:text-[#5f5f5f] text-black
           '
-          onClick={e => {handleForm(e)}} />
+          onChange={e => {handleForm(e)}} />
 
         </div>
 
@@ -91,7 +100,7 @@ const Login = () => {
           dark:border-[#5e5e5e] dark:placeholder:text-[#b9b9b9] dark:text-white
           border-[#3d3d3d] placeholder:text-[#5f5f5f] text-black outline-none
           '
-          onClick={e => {handleForm(e)}} />
+          onChange={e => {handleForm(e)}} />
         </div>
         </div>
 
@@ -103,8 +112,9 @@ const Login = () => {
         dark:hover:bg-[#00a6ff] dark:hover:text-white
         border-[#006aff] text-[#006aff]
         hover:bg-[#006aff] hover:text-white
-        '>
-          Sign Up
+        '
+        onClick={logInUser}>
+          Login
         </div>
 
       </div>
