@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import registerUser from '../api/RegisterUSER'
 
 
 const Register = () => {
+
+    const navigate = useNavigate()
 
     // Function to handle image upload
     const [image, setImage] = useState(null)
@@ -28,13 +32,9 @@ const Register = () => {
     }
 
     const handleRegister = async () => {
-        console.log({
-            name,
-            email,
-            password,
-            bio,
-            accent_color
-        })
+        const result = await registerUser(image, name, email, password, bio, accent_color)
+        if (result === -1) navigate('/login')
+        else navigate('/')
     }
 
 
