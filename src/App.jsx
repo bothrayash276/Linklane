@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Login from './Pages/Login.jsx'
 import Header from './Components/Header.jsx'
+import Register from './Pages/Register.jsx'
 
 const App = () => {
 
@@ -18,6 +19,17 @@ const App = () => {
       <>
       <Header />
       <Login/>
+      </>
+    }
+  />
+
+  {/* Register Router Page */}
+  <Route
+    path='/register'
+    element={
+      <>
+        <Header/>
+        <Register/>
       </>
     }
   />
