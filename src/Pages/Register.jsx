@@ -19,8 +19,22 @@ const Register = () => {
     const [bio, setBio] = useState("")
     const [accent_color, setAccent_color] = useState("")
 
-    const handleForm = () => {
+    const handleForm = (e) => {
+        if(e.target.id === 'name') setName(e.target.value)
+        else if (e.target.id === 'email') setEmail(e.target.value)
+        else if (e.target.id === 'password') setPassword(e.target.value)
+        else if (e.target.id === 'bio') setBio(e.target.value)
+        else if (e.target.id === 'color') setAccent_color(e.target.value)
+    }
 
+    const handleRegister = async () => {
+        console.log({
+            name,
+            email,
+            password,
+            bio,
+            accent_color
+        })
     }
 
 
@@ -29,7 +43,7 @@ const Register = () => {
         <div
         className='min-h-screen w-full flex justify-center not-sm:dark:bg-neutral-900 not-sm:bg-slate-100'>
             <div
-            className='flex flex-col gap-5 p-5 px-10 dark:bg-neutral-900 bg-slate-100 
+            className='flex flex-col gap-5 p-5 px-10 sm:min-w-xl items-center dark:bg-neutral-900 bg-slate-100 
             rounded-lg'>
 
                 {/* Register Title */}
@@ -85,7 +99,7 @@ const Register = () => {
                     type="name"
                     onChange={handleForm}
                     placeholder='Name'
-                    className='border border-zinc-700 rounded-r-lg p-2 px-4
+                    className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-80
                     dark:placeholder:text-gray-400 placeholder:text-gray-500
                      dark:text-white text-black outline-none' />
                 </div>
@@ -103,7 +117,7 @@ const Register = () => {
                     type="email"
                     onChange={handleForm}
                     placeholder='Email'
-                    className='border border-zinc-700 rounded-r-lg p-2 px-4
+                    className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-80
                     dark:placeholder:text-gray-400 placeholder:text-gray-500
                      dark:text-white text-black outline-none' />
                 </div>
@@ -121,7 +135,7 @@ const Register = () => {
                     type="password"
                     onChange={handleForm}
                     placeholder='Password'
-                    className='border border-zinc-700 rounded-r-lg p-2 px-4
+                    className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-80
                     dark:placeholder:text-gray-400 placeholder:text-gray-500
                      dark:text-white text-black outline-none' />
                 </div>
@@ -138,14 +152,36 @@ const Register = () => {
                     id='bio' 
                     type="bio"
                     onChange={handleForm}
-                    placeholder='Bio'
-                    className='border border-zinc-700 rounded-r-lg p-2 px-4
+                    placeholder='Tell us a little about yourself...'
+                    className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-80
                     dark:placeholder:text-gray-400 placeholder:text-gray-500
                      dark:text-white text-black outline-none min-h-50 resize-none min-w-[214.4px]' />
                 </div>
 
+                {/* Accent Color */}
                 <div
-                className='text-center'>
+                className='w-full flex align-middle justify-center'>
+                    <i
+                    className='bi bi-eyedropper 
+                      border-zinc-700 text-gray-500
+                        border-t border-b rounded-l-lg border-l 
+                        dark:text-gray-400 p-2 px-4'/>
+                    <input 
+                    id='color'
+                    type="color"
+                    defaultValue={'#00a6ff'}
+                    className='rounded-r-lg h-[41.6px] p-2 px-4 
+                    border not-sm:flex-1
+                    sm:min-w-80 border-zinc-700'
+                    onChange={handleForm} />
+                </div>
+
+                <div
+                onClick={handleRegister}
+                className='text-center font-[JetBrains_Mono] border-2 p-2 px-4 rounded-lg
+                dark:text-[#00a6ff] text-[#006aff] dark:border-[#00a6ff] border-[#006aff]
+                dark:hover:bg-[#00a6ff] hover:bg-[#006aff] hover:text-white
+                cursor-pointer'>
                     Register
                 </div>
 
