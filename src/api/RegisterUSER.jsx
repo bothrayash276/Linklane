@@ -19,7 +19,7 @@ export default async function registerUser(imgFileURL, name, email, password, bi
     const result = await response.json()
 
     if(response.status === 409) {
-        throw new Error(result.message)
+       // throw new Error(result.message)
         return -1
     }
     else if (response.status === 201) {

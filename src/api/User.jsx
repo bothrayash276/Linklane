@@ -1,6 +1,5 @@
 export default async function userLogin(email, password) {
     const BACKEND_URI = import.meta.env.VITE_BACKEND_URI
-    console.log(email, password)
     const response = await fetch(`${BACKEND_URI}/login`, {
         method : 'POST',
         headers: {
