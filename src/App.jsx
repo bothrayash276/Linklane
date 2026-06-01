@@ -4,6 +4,7 @@ import Login from './Pages/Login.jsx'
 import Header from './Components/Header.jsx'
 import Register from './Pages/Register.jsx'
 import Home from './Pages/Home.jsx'
+import Personal from './Pages/Personal.jsx'
 
 const App = () => {
 
@@ -42,6 +43,17 @@ const App = () => {
         <Header/>
         <Home/>
       </>}
+  />
+
+  {/* Personal Information Edit Router Page */}
+  <Route
+    path={'/:id/profile'}
+    element={
+      <>
+      <Header/>
+      <Personal/>
+      </>
+    }
   />
 
   </Routes>
