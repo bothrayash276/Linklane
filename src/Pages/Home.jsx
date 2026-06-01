@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     const id  = useParams().id
@@ -56,7 +57,7 @@ const Home = () => {
             <div className='text-white font-[JetBrains_Mono] font-bold'>Copied to Clipboard</div>
         </div>
 
-
+        {/* Information Section */}
         <div
         className='flex gap-4 w-9/10 h-20'>
             <img src={user.img_url} alt=""
@@ -91,6 +92,22 @@ const Home = () => {
                 </div>
             </div>
 
+        </div>
+
+        {/* Links */}
+        <div>
+            {
+            user.links.map(link => {
+                return (
+                    <>
+                        <Link
+                        to={link.address}>
+                            {link.name}
+                        </Link>
+                    </>
+                )
+            })
+        }
         </div>
     </div>
     </>
