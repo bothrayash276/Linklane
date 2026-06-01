@@ -21,9 +21,11 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [bio, setBio] = useState("")
-    const [accent_color, setAccent_color] = useState("")
+    const [accent_color, setAccent_color] = useState("#00a6ff")
+    const [empty, setEmpty] = useState(false)
 
     const handleForm = (e) => {
+        setEmpty(false)
         if(e.target.id === 'name') setName(e.target.value)
         else if (e.target.id === 'email') setEmail(e.target.value)
         else if (e.target.id === 'password') setPassword(e.target.value)
@@ -32,7 +34,12 @@ const Register = () => {
     }
 
     const handleRegister = async () => {
+        if (!name || !email || !password || !bio) {
+            setEmpty(true)
+            return
+        }
         const result = await registerUser(image, name, email, password, bio, accent_color)
+        console.log(result)
         if (result === -1) navigate('/login')
         else navigate('/')
     }
@@ -175,7 +182,14 @@ const Register = () => {
                     sm:min-w-80 border-zinc-700'
                     onChange={handleForm} />
                 </div>
+                
+                {/* Error Message */}
+                <div className={`flex items-center gap-2 ${empty ? "" : "hidden"}`}>
+                    <i className='bi bi-exclamation-triangle text-red-500'/>
+                    <div className='text-red-500 text-sm'>Values cannot be empty</div>
+                </div>
 
+                {/* Register Button */}
                 <div
                 onClick={handleRegister}
                 className='text-center font-[JetBrains_Mono] border-2 p-2 px-4 rounded-lg
