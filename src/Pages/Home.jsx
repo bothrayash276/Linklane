@@ -96,13 +96,9 @@ const Home = () => {
 
         </div>
 
-        <div
-            className='text-6xl font-[Jockey_One] mt-10'
-            style={{ color : `rgb(${user.page_color})`}}>LINKS</div>
-
         {/* Links */}
         <div
-        className='flex flex-wrap justify-center gap-10'>
+        className='flex mt-10 flex-wrap justify-center gap-10'>
 
             {
             user.links.map(link => {
