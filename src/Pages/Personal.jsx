@@ -77,6 +77,8 @@ const Personal = () => {
         const result = await response.json()
 
         if(!response.ok) throw new Error(result.message)
+            
+        window.location.reload()
         alert(result.message)
 
     }
@@ -330,7 +332,8 @@ const Personal = () => {
             className='flex flex-col  w-full gap-4'>
                 {user.links.map(linkOb => {
                     return (
-                        < >
+                        <div
+                        key={linkOb.id}>
                             <div
                             key={`${linkOb} container`}
                             className='flex items-center'
@@ -378,7 +381,7 @@ const Personal = () => {
                                 </div> 
                                    
                             </div>
-                        </>
+                        </div>
                     )
                 })}
             </div>
