@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import UserLinks from '../Components/Links'
 
 const Personal = () => {
     const [user, setUser] = useState()
@@ -47,10 +48,38 @@ const Personal = () => {
 
     // Form
     const handleUpdateDetails = async () => {
-        
+        const userData = {
+            'id' : id,
+            'name' : document.getElementById('name').value,
+            'email' : user.email,
+            'password' : user.password,
+            'bio' : document.getElementById('bio').value,
+            'page_color' : document.getElementById('color').value,
+            'links' : [...user.links]
+        }
+
     }
 
 
+    const handleCheckbox = (linkOb) => {
+        const links = user.links.map( linkObj => {
+            if(linkObj.address === linkOb.address) {
+                return {
+                    ...linkOb,
+                    'status' : !Number(linkOb.status)
+                }
+            }
+            return linkObj
+        })
+
+        
+        const newUser = {
+            ...user,
+            'links' : links
+        }
+
+        setUser(newUser)
+    }
     
 
 
@@ -81,7 +110,7 @@ const Personal = () => {
                 </div>
             </div>
 
-             {/* Form */}
+
 
                 {/* Form */}
 
@@ -141,6 +170,52 @@ const Personal = () => {
 
             {/* Save Details Button */}
 
+
+            <div
+            className='flex flex-col  w-full gap-4'>
+                {user.links.map(linkOb => {
+                    return (
+                        < >
+                            <div
+                            key={`${linkOb} container`}
+                            className='flex items-center'>
+                                <div 
+                                key={`${linkOb.name}`}
+                                className='border-zinc-700 text-black
+                                    border-t border-b rounded-l-lg border-l 
+                                    dark:text-white p-2 px-4 min-w-30'>
+                                        {linkOb.name}
+                                 </div>
+                                
+                                <Link
+                                key={`${linkOb.address}`} 
+                                to = {linkOb.address}
+                                target='_blank'
+                                className='border-zinc-700 hover:underline
+                                    border bg-zinc-200 text-blue-600
+                                    dark:text-white p-2 px-4 flex-1 flex gap-3'>
+                                        <i className='bi bi-link' />
+                                        {linkOb.address}
+                                 </Link>
+
+                                <div
+                                className='w-10.5 h-10.5 flex items-center justify-center
+                                border-r border-t border-b rounded-r-lg '>
+                                    <div
+                                    onClick={() => {handleCheckbox(linkOb)}}
+                                    className={`${Number(linkOb.status) ? "bg-green-600" : "bg-red-600"}
+                                    w-5 h-5 rounded-full`}>
+
+                                    </div>
+                                </div> 
+                                    
+                                   
+                            </div>
+                        </>
+                    )
+                })}
+            </div>
+
             <div
             onClick={handleUpdateDetails}
             className='flex gap-3 text-white p-2 px-4 rounded-full'
@@ -149,9 +224,6 @@ const Personal = () => {
                 Update Details
             </div>
              
-                
-
-
 
         </div>
     </>
