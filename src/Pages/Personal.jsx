@@ -183,14 +183,13 @@ const Personal = () => {
 
     // Delete Link
     const handleDelete = (linkOb) => {
-        const links = user.links.map( linkObj => linkObj.id !== linkOb.id)
+        const links = user.links.filter( linkObj => linkObj.id !== linkOb.id)
 
         const newUser = {
             ...user,
             'links' : links
         }
-
-        setUser(newUser)
+       setUser(newUser)
     }
 
 
@@ -406,7 +405,7 @@ const Personal = () => {
                                 border-r border-t border-b border-zinc-700 '>
                                     <div
                                     onClick={() => {handleDelete(linkOb)}}
-                                    className={`bi bi-trash-fill
+                                    className={`bi bi-trash-fill cursor-pointer
                                     dark:text-white text-black`}>
 
                                     </div>
@@ -419,7 +418,7 @@ const Personal = () => {
                                     <div
                                     onClick={() => {handleCheckbox(linkOb)}}
                                     className={`${Number(linkOb.status) ? "bg-green-600" : "bg-red-600"}
-                                    w-5 h-5 rounded-full`}>
+                                    w-5 h-5 rounded-full cursor-pointer`}>
 
                                     </div>
                                 </div> 
