@@ -35,6 +35,7 @@ const Home = () => {
     const copyToClipboard = async () => {
         const FRONTEND = import.meta.env.VITE_FRONTEND_URI
         await navigator.clipboard.writeText(`${FRONTEND}/${id}`)
+
         setCopy(true)
         setTimeout(() => {
             setCopy(false)
@@ -48,7 +49,7 @@ const Home = () => {
     return (
     <>
     <div
-    className={`min-h-screen w-full flex flex-col items-center p-10 relative`}
+    className={`min-h-screen w-full flex flex-col items-center gap-20 p-10 relative`}
     style={{ backgroundColor : `rgb(${user.page_color}, 0.2)`}}>
 
         {/* Copy To Clipboard overlay */}
@@ -96,16 +97,12 @@ const Home = () => {
         </div>
 
         <div
-            className='text-6xl font-[Jockey_One] p-10 not-sm:hidden'
+            className='text-6xl font-[Jockey_One] mt-10'
             style={{ color : `rgb(${user.page_color})`}}>LINKS</div>
 
         {/* Links */}
         <div
-        className='flex flex-wrap justify-center gap-10 p-20'>
-
-            <div
-            className='text-6xl font-[Jockey_One] sm:hidden mt-5'
-            style={{ color : `rgb(${user.page_color})`}}>LINKS</div>
+        className='flex flex-wrap justify-center gap-10'>
 
             {
             user.links.map(link => {
