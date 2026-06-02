@@ -7,8 +7,27 @@ function hexToRgbString(hex) {
 }
 
 
-export default async function registerUser(imgFileURL, name, email, password, bio, pageHex) {
+const cloudinary = async (file) => {
+        const formData = new FormData()
 
+        formData.append('file', file)
+        formData.append('upload_preset', 'linklane')
+        const CLOUDINARY_URI = import.meta.env.VITE_CLOUDINARY_URI
+        const response = await fetch(`${CLOUDINARY_URI}`, {
+            'method' : 'POST',
+            body: formData
+        })
+
+        const data = await response.json()
+
+        setNewImage(data.secure_url)
+        return data.secure_url
+        console.log(data.secure_url)
+    }
+
+
+export default async function registerUser(imgFile, name, email, password, bio, pageHex) {
+    const url = await cloudinary(imgFile)
     // Converting hex to rgb
     const pageColor = hexToRgbString(pageHex)
 
@@ -16,7 +35,7 @@ export default async function registerUser(imgFileURL, name, email, password, bi
         'name' : name,
         'email' : email,
         'password' : password,
-        'img_url' :  imgFileURL,
+        'img_url' :  url,
         'bio' : bio,
         'page_color' : pageColor
     }

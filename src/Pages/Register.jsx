@@ -9,11 +9,13 @@ const Register = () => {
 
     // Function to handle image upload
     const [image, setImage] = useState(null)
+    const [file, setFile] = useState(null)
 
     const handleImageChange = async (e) => {
         const imageObject = e.target.files[0]
         const imageFile = URL.createObjectURL(imageObject)
         setImage(imageFile)
+        setFile(imageObject)
     }
 
     // Form State
@@ -34,11 +36,11 @@ const Register = () => {
     }
 
     const handleRegister = async () => {
-        if (!name || !email || !password || !bio) {
+        if (!name || !email || !password || !bio || !file) {
             setEmpty(true)
             return
         }
-        const result = await registerUser(image, name, email, password, bio, accent_color)
+        const result = await registerUser(file, name, email, password, bio, accent_color)
         console.log(result)
         if (result === -1) navigate('/login')
         else navigate('/')

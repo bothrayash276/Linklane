@@ -10,6 +10,8 @@ const Personal = () => {
     const [loading, setLoading] = useState(true)
     const [addLink, setAddLink] = useState(false)
     const [newLink, setNewLink] = useState("")
+    const [newImage, setNewImage] = useState(null)
+    const [file, setFile] = useState(null)
     const [newLinkAddress, setNewLinkAddress] = useState("")
     const id = useParams().id
     const navigate = useNavigate()
@@ -42,6 +44,7 @@ const Personal = () => {
             const json = await data.json()
             
             setUser(json)
+            setNewImage(json.img_url)
             setLoading(false)
 
 
@@ -53,8 +56,10 @@ const Personal = () => {
 
     // Form
     const handleUpdateDetails = async () => {
+
         const userData = {
             'id' : id,
+            'img_url' : await cloudinary(file) || user.img_url,
             'name' : document.getElementById('name').value,
             'email' : user.email,
             'password' : user.password,
@@ -69,7 +74,7 @@ const Personal = () => {
             'method' : 'POST',
             headers : {
                 'Content-Type' : 'application/json',
-                'accesstoken' : accessToken
+                'accesstoken' : accessToken,
             },
             body : JSON.stringify(userData)
         })
@@ -81,6 +86,34 @@ const Personal = () => {
         window.location.reload()
         alert(result.message)
 
+    }
+
+    const handleImage = async (e) => {
+        const file = e.target.files[0]
+        setFile(file)
+        const url = URL.createObjectURL(file)
+        setNewImage(url)
+    }
+
+    const cloudinary = async (file) => {
+
+        if(!file) return
+
+        const formData = new FormData()
+
+        formData.append('file', file)
+        formData.append('upload_preset', 'linklane')
+        const CLOUDINARY_URI = import.meta.env.VITE_CLOUDINARY_URI
+        const response = await fetch(`${CLOUDINARY_URI}`, {
+            'method' : 'POST',
+            body: formData
+        })
+
+        const data = await response.json()
+
+        setNewImage(data.secure_url)
+        return data.secure_url
+        console.log(data.secure_url)
     }
 
     // Handle Empty
@@ -177,7 +210,7 @@ const Personal = () => {
                 {/* Image */}
                 <div
                 className='flex gap-4 w-full h-20 items-center justify-between'>
-                    <img src={user.img_url} alt=""
+                    <img src={newImage} alt=""
                     className='w-20 h-20 object-cover rounded-full border-4'
                     style={{ borderColor : `rgb(${user.page_color})`}} />
 
@@ -187,7 +220,8 @@ const Personal = () => {
                         <i className='"bi bi-cloud-arrow-up-fill'/>
                         <span className='sm:hidden'>Upload</span>
                         <span className='not-sm:hidden'>Upload Image</span>
-                        <input type="file" accept='images/*'
+                        <input type="file" accept='image/*'
+                        onChange={handleImage}
                         className='text-[rgb(0,0,0,0)] absolute left-0 top-0 h-10 w-[175.2px]'/>
                     </div>
                 </div>
@@ -395,7 +429,7 @@ const Personal = () => {
 
             <div
             onClick={handleUpdateDetails}
-            className={`flex gap-3 text-white p-2 px-4 rounded-full`}
+            className={`flex gap-3 text-white p-2 px-4 rounded-full cursor-pointer`}
             style={addLink ? {filter : 'blur(5px)'} : {backgroundColor : `rgb(${user.page_color})`}}>
                 <i className='bi bi-pencil-fill'/>
                 Update Details
