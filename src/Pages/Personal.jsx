@@ -254,7 +254,7 @@ const Personal = () => {
 
             {/* Add Link Button */}
             <div
-            className='flex justify-end w-full'>
+            className='flex sm:justify-end not-sm:justify-center w-full'>
                 <div
                 onClick={()=>{setAddLink(true)}}
             className='p-2 px-4 text-white flex gap-3 justify-end rounded-lg cursor-pointer'
@@ -329,7 +329,7 @@ const Personal = () => {
 
             {/* Displaying Links */}
             <div
-            className='flex flex-col  w-full gap-4'>
+            className='flex flex-col not-sm:items-center w-full gap-4'>
                 {user.links.map(linkOb => {
                     return (
                         <div
@@ -352,9 +352,9 @@ const Personal = () => {
                                 target='_blank'
                                 className='border-zinc-700 hover:underline
                                     border bg-zinc-200 dark:bg-neutral-950 text-blue-600
-                                    dark:text-white p-2 px-4 flex-1 flex gap-3'>
+                                    dark:text-white p-2 px-4 sm:flex-1 flex gap-3'>
                                         <i className='bi bi-link' />
-                                        {linkOb.address}
+                                        <span className='not-sm:hidden'>{linkOb.address}</span>
                                  </Link>
 
                                 <div
