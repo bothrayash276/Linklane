@@ -182,7 +182,7 @@ const Personal = () => {
                                 <div 
                                 key={`${linkOb.name}`}
                                 className='border-zinc-700 text-black
-                                    border-t border-b rounded-l-lg border-l 
+                                    border-t border-b rounded-l-lg border-l-3 
                                     dark:text-white p-2 px-4 min-w-30'>
                                         {linkOb.name}
                                  </div>
@@ -192,7 +192,7 @@ const Personal = () => {
                                 to = {linkOb.address}
                                 target='_blank'
                                 className='border-zinc-700 hover:underline
-                                    border bg-zinc-200 text-blue-600
+                                    border bg-zinc-200 dark:bg-neutral-950 text-blue-600
                                     dark:text-white p-2 px-4 flex-1 flex gap-3'>
                                         <i className='bi bi-link' />
                                         {linkOb.address}
@@ -200,7 +200,7 @@ const Personal = () => {
 
                                 <div
                                 className='w-10.5 h-10.5 flex items-center justify-center
-                                border-r border-t border-b rounded-r-lg '>
+                                border-r-3 border-t border-b border-zinc-700 rounded-r-lg '>
                                     <div
                                     onClick={() => {handleCheckbox(linkOb)}}
                                     className={`${Number(linkOb.status) ? "bg-green-600" : "bg-red-600"}
