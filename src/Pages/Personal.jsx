@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import UserLinks from '../Components/Links'
+import {v4 as uid} from 'uuid'
+import ColorHex from '../Components/ColorHex'
 
 const Personal = () => {
     const [user, setUser] = useState()
@@ -57,9 +59,26 @@ const Personal = () => {
             'email' : user.email,
             'password' : user.password,
             'bio' : document.getElementById('bio').value,
-            'page_color' : document.getElementById('color').value,
+            'page_color' : ColorHex(document.getElementById('color').value),
             'links' : [...user.links]
         }
+        console.log(userData.page_color)
+
+        const BACKEND = import.meta.env.VITE_BACKEND_URI
+        const accessToken = localStorage.getItem('accessToken')
+        const response = await fetch(`${BACKEND}/update`, {
+            'method' : 'POST',
+            headers : {
+                'Content-Type' : 'application/json',
+                'accesstoken' : accessToken
+            },
+            body : JSON.stringify(userData)
+        })
+
+        const result = await response.json()
+
+        if(!response.ok) throw new Error(result.message)
+        alert(result.message)
 
     }
 
@@ -87,8 +106,6 @@ const Personal = () => {
         setUser(newUser)
     }
 
-    
-
 
     // handle New Link input change
     const handlelLinkValue = (e) => {
@@ -108,6 +125,7 @@ const Personal = () => {
         }
 
         const newLinkObj = {
+            'id' : uid(),
             'name' : newLink,
             'address' : newLinkAddress,
             'status' : true
@@ -125,6 +143,19 @@ const Personal = () => {
         setNewLink("")
         setNewLinkAddress("")
         setAddLink(false)
+    }
+
+
+    // Delete Link
+    const handleDelete = (linkOb) => {
+        const links = user.links.map( linkObj => linkObj.id !== linkOb.id)
+
+        const newUser = {
+            ...user,
+            'links' : links
+        }
+
+        setUser(newUser)
     }
 
 
@@ -326,6 +357,18 @@ const Personal = () => {
 
                                 <div
                                 className='w-10.5 h-10.5 flex items-center justify-center
+                                border-r border-t border-b border-zinc-700 '>
+                                    <div
+                                    onClick={() => {handleDelete(linkOb)}}
+                                    className={`bi bi-trash-fill
+                                    dark:text-white text-black`}>
+
+                                    </div>
+                                </div> 
+                                
+
+                                <div
+                                className='w-10.5 h-10.5 flex items-center justify-center
                                 border-r-3 border-t border-b border-zinc-700 rounded-r-lg '>
                                     <div
                                     onClick={() => {handleCheckbox(linkOb)}}
@@ -334,7 +377,6 @@ const Personal = () => {
 
                                     </div>
                                 </div> 
-                                    
                                    
                             </div>
                         </>
