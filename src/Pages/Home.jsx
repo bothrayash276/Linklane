@@ -60,7 +60,7 @@ const Home = () => {
 
         {/* Information Section */}
         <div
-        className='flex gap-4 w-9/10 h-20'>
+        className='flex not-sm:flex-col gap-4 w-9/10 h-20 not-sm:items-center'>
             <img src={user.img_url} alt=""
             className={`w-20 h-20 object-cover rounded-full border-4`}
             style={{ borderColor : `rgb(${user.page_color})`}}  />
@@ -69,7 +69,7 @@ const Home = () => {
             className='flex flex-col justify-center'>
 
                 <div 
-                className='text-4xl font-bold font-[JetBrains_Mono]'
+                className='text-4xl not-sm:text-2xl font-bold font-[JetBrains_Mono]'
                 style={{ color : `rgb(${user.page_color})` }} >
                     {user.name}
                 </div>
@@ -89,15 +89,24 @@ const Home = () => {
                 onClick={copyToClipboard}
                 style={{ backgroundColor : `rgb(${user.page_color})`}}>
                     <i className='bi bi-share-fill text-white'/>
-                    <span className='not-sm:hidden'>Share</span>
+                    Share
                 </div>
             </div>
 
         </div>
 
+        <div
+            className='text-6xl font-[Jockey_One] p-10 not-sm:hidden'
+            style={{ color : `rgb(${user.page_color})`}}>LINKS</div>
+
         {/* Links */}
         <div
-        className='flex flex-wrap gap-10 p-20'>
+        className='flex flex-wrap justify-center gap-10 p-20'>
+
+            <div
+            className='text-6xl font-[Jockey_One] sm:hidden mt-5'
+            style={{ color : `rgb(${user.page_color})`}}>LINKS</div>
+
             {
             user.links.map(link => {
                 return (

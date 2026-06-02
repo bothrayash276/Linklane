@@ -165,31 +165,32 @@ const Personal = () => {
   return (
     <> 
         <div
-        className='flex flex-col gap-10 relative min-h-screen w-full p-10 items-center font-[JetBrains_Mono]'
+        className='flex flex-col gap-10 relative min-h-screen w-full p-10 items-center font-[JetBrains_Mono] overflow-hidden'
         >
 
+            {/* Personal Details */}
             <div
             className='flex flex-col gap-10 p-4 bg-slate-100 dark:bg-neutral-950 rounded-lg'
             style={addLink ? {filter : 'blur(5px)'} : {}}>
+                
+                
                 {/* Image */}
-            <div
-            className='flex gap-4 w-full h-20 items-center justify-between'>
-                <img src={user.img_url} alt=""
-                className='w-20 h-20 object-cover rounded-full border-4'
-                style={{ borderColor : `rgb(${user.page_color})`}} />
-
                 <div
-                style={{ backgroundColor : `rgb(${user.page_color})`}}
-                className='font-[JetBrains_Mono] flex gap-3 text-white p-2 px-4 rounded-full relative cursor-pointer'>
-                    <i className='"bi bi-cloud-arrow-up-fill'/>
-                    <span className='sm:hidden'>Upload</span>
-                    <span className='not-sm:hidden'>Upload Image</span>
-                    <input type="file" accept='images/*'
-                    className='text-[rgb(0,0,0,0)] absolute left-0 top-0 h-10 w-[175.2px]'/>
+                className='flex gap-4 w-full h-20 items-center justify-between'>
+                    <img src={user.img_url} alt=""
+                    className='w-20 h-20 object-cover rounded-full border-4'
+                    style={{ borderColor : `rgb(${user.page_color})`}} />
+
+                    <div
+                    style={{ backgroundColor : `rgb(${user.page_color})`}}
+                    className='font-[JetBrains_Mono] flex gap-3 text-white p-2 px-4 rounded-full relative cursor-pointer'>
+                        <i className='"bi bi-cloud-arrow-up-fill'/>
+                        <span className='sm:hidden'>Upload</span>
+                        <span className='not-sm:hidden'>Upload Image</span>
+                        <input type="file" accept='images/*'
+                        className='text-[rgb(0,0,0,0)] absolute left-0 top-0 h-10 w-[175.2px]'/>
+                    </div>
                 </div>
-            </div>
-
-
 
                 {/* Form */}
 
@@ -225,7 +226,7 @@ const Personal = () => {
                     placeholder='Tell us something about yourself...'
                     defaultValue={user.bio}
                     className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-120
-                    dark:placeholder:text-gray-400 placeholder:text-gray-500
+                    dark:placeholder:text-gray-400 placeholder:text-gray-500 not-sm:w-full
                      dark:text-white text-black outline-none min-h-50 resize-none min-w-[214.4px]' />
                 </div>
 
@@ -247,10 +248,6 @@ const Personal = () => {
                 </div>
             </div>
 
-            <div
-            >
-
-            </div>
 
             {/* Add Link Button */}
             <div
@@ -316,13 +313,21 @@ const Personal = () => {
 
                 {/* Add Link Button */}
                 <div
-                className='flex justify-center w-full'>
+                className='flex justify-center w-full items-center gap-10'>
                     <div
                 onClick={addNewLink}
                 className='p-2 px-4 border rounded-lg border-zinc-700 border-x-3
                 dark:text-white text-black cursor-pointer'>
                     Add
-                </div>
+                    </div>
+
+                    <div
+                onClick={()=>{setAddLink(false)}}
+                className='p-2 px-4 border rounded-lg border-zinc-700 border-x-3
+                dark:text-white text-black cursor-pointer'>
+                    Cancel
+                    </div>
+
                 </div>
 
             </div>
