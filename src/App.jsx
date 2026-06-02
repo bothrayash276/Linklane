@@ -24,6 +24,15 @@ const App = () => {
       </>
     }
   />
+  <Route 
+    path='/'
+    element={
+      <>
+      <Header />
+      <Login/>
+      </>
+    }
+  />
 
   {/* Register Router Page */}
   <Route
