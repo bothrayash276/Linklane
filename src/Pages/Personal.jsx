@@ -62,7 +62,6 @@ const Personal = () => {
             'page_color' : ColorHex(document.getElementById('color').value),
             'links' : [...user.links]
         }
-        console.log(userData.page_color)
 
         const BACKEND = import.meta.env.VITE_BACKEND_URI
         const accessToken = localStorage.getItem('accessToken')
