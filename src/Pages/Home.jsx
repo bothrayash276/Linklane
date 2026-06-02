@@ -49,7 +49,7 @@ const Home = () => {
     return (
     <>
     <div
-    className={`min-h-screen w-full flex flex-col items-center gap-20 p-10 relative`}
+    className={`min-h-screen w-full flex flex-col items-center gap-5 p-10 relative`}
     style={{ backgroundColor : `rgb(${user.page_color}, 0.2)`}}>
 
         {/* Copy To Clipboard overlay */}
@@ -61,7 +61,7 @@ const Home = () => {
 
         {/* Information Section */}
         <div
-        className='flex not-sm:flex-col gap-4 w-9/10 h-20 not-sm:items-center'>
+        className='flex not-sm:flex-col gap-4 w-9/10 not-sm:items-center'>
             <img src={user.img_url} alt=""
             className={`w-20 h-20 object-cover rounded-full border-4`}
             style={{ borderColor : `rgb(${user.page_color})`}}  />
@@ -70,14 +70,14 @@ const Home = () => {
             className='flex flex-col justify-center'>
 
                 <div 
-                className='text-4xl not-sm:text-2xl font-bold font-[JetBrains_Mono]'
+                className='text-4xl not-sm:text-2xl font-bold font-[JetBrains_Mono] text-center'
                 style={{ color : `rgb(${user.page_color})` }} >
                     {user.name}
                 </div>
 
                 <div
                 className='dark:text-[rgb(255,255,255,0.4)] text-[rgb(0,0,0,0.6)]
-                 font-[JetBrains_Mono] text-sm'>
+                 font-[JetBrains_Mono] text-sm text-center'>
                     {user.bio}
                 </div>
 
@@ -96,9 +96,13 @@ const Home = () => {
 
         </div>
 
+        <div
+            className='text-6xl font-[Jockey_One] mt-10'
+            style={{ color : `rgb(${user.page_color})`}}>LINKS</div>
+
         {/* Links */}
         <div
-        className='flex mt-10 flex-wrap justify-center gap-10'>
+        className='flex flex-wrap justify-center gap-10'>
 
             {
             user.links.map(link => {
