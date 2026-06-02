@@ -6,6 +6,7 @@ import UserLinks from '../Components/Links'
 const Personal = () => {
     const [user, setUser] = useState()
     const [loading, setLoading] = useState(true)
+    const [addLink, setAddLink] = useState(false)
     const id = useParams().id
     const navigate = useNavigate()
 
@@ -60,7 +61,10 @@ const Personal = () => {
 
     }
 
+    // Handle Empty
+    const [empty, setEmpty] = useState(false)
 
+    // Toggle Link On and Off
     const handleCheckbox = (linkOb) => {
         const links = user.links.map( linkObj => {
             if(linkObj.address === linkOb.address) {
@@ -80,7 +84,37 @@ const Personal = () => {
 
         setUser(newUser)
     }
-    
+
+    const [newLink, setNewLink] = useState()
+    const [newLinkAddress, setNewLinkAddress] = useState()
+
+
+    // handle New Link input change
+    const handlelLinkValue = (e) => {
+        if (e.target.id === 'link_name') setNewLink(e.target.value)
+        else if (e.target.id === 'link_address') setNewLinkAddress(e.target.value)
+    }  
+
+    // Add new Link
+    const addNewLink = () => {
+        if (!newLink || !newLinkAddress) {
+            setEmpty(true)
+            setTimeout(() => {
+                setEmpty(false)
+            }, 1000);
+            return
+        }
+
+        const newLink = {
+            'name' : newLink,
+            'address' : newLinkAddress,
+            'status' : true
+        }
+
+        const links = user.links
+        links.push(newLink)
+        console.log(links)
+    }
 
 
     if (loading) return (<>Loading...</>)
@@ -88,10 +122,20 @@ const Personal = () => {
   return (
     <> 
         <div
-        className='flex flex-col gap-10 min-h-screen w-full p-10 items-center'>
+        className='flex flex-col gap-10 relative min-h-screen w-full p-10 items-center font-[JetBrains_Mono]'
+        >
+
+            {/* Empty Field Error Message */}
+            <div
+            className={`bg-red-600 px-4 p-2 flex gap-3 text-white rounded-full absolute right-10
+            ${empty ? "" : "hidden"}`}>
+                <i className='bi bi-exclamation-triangle-fill' />
+                Field cannot be empty
+            </div>
 
             <div
-            className='flex flex-col gap-10 p-4 bg-slate-100 dark:bg-neutral-950 rounded-lg'>
+            className='flex flex-col gap-10 p-4 bg-slate-100 dark:bg-neutral-950 rounded-lg'
+            style={addLink ? {filter : 'blur(5px)'} : {}}>
                 {/* Image */}
             <div
             className='flex gap-4 w-full h-20 items-center justify-between'>
@@ -168,9 +212,86 @@ const Personal = () => {
                 </div>
             </div>
 
-            {/* Save Details Button */}
+            <div
+            >
+
+            </div>
+
+            {/* Add Link Button */}
+            <div
+            className='flex justify-end w-full'>
+                <div
+                onClick={()=>{setAddLink(true)}}
+            className='p-2 px-4 text-white flex gap-3 justify-end rounded-lg cursor-pointer'
+            style={addLink ? {filter : 'blur(5px)'} : {backgroundColor : `rgb(${user.page_color})`}}>
+                <i className='bi bi-pencil-fill' />
+                Add Link
+            </div>
+            </div>
 
 
+            {/* Add Link Card */}
+            <div
+            className={`${addLink ? "" : "hidden"} absolute top-10 flex flex-col gap-10
+            dark:bg-neutral-900 bg-slate-100 p-10 rounded-lg`}>
+
+                <div
+                className='font-[Jockey_One] text-6xl text-center
+                text-black dark:text-white'>
+                    ADD LINK
+                </div>
+                
+                {/* Link Name */}
+                <div
+                className='flex'>
+
+                    <i className='bi bi-alphabet-uppercase text-xl p-2 px-4 rounded-l-lg 
+                    border-t border-b border-l-3 border-zinc-700 
+                    dark:text-white text-black' />
+
+                    <input 
+                    id='link_name'
+                    type="text"
+                    onChange={handlelLinkValue}
+                    placeholder='Add link'
+                    className='placeholder:text-gray-500 placeholder:dark:text-gray-400
+                    border border-r-3 rounded-r-lg border-zinc-700 text-black dark:text-white
+                    p-2 px-4 sm:min-w-120 outline-none' />
+
+                </div>
+
+                {/* Link Address */}
+                <div
+                className='flex'>
+
+                    <i className='bi bi-link-45deg text-xl p-2 px-4 rounded-l-lg 
+                    border-t border-b border-l-3 border-zinc-700 
+                    dark:text-white text-black' />
+
+                    <input 
+                    id='link_address'
+                    type="link"
+                    onChange={handlelLinkValue}
+                    placeholder='Add link'
+                    className='placeholder:text-gray-500 placeholder:dark:text-gray-400
+                    border border-r-3 rounded-r-lg border-zinc-700 text-black dark:text-white
+                    p-2 px-4 sm:min-w-120 outline-none' />
+
+                </div>
+
+                {/* Add Link Button */}
+                <div
+                className='flex justify-center w-full'>
+                    <div
+                className='p-2 px-4 border rounded-lg border-zinc-700 border-x-3
+                dark:text-white text-black cursor-pointer'>
+                    Add
+                </div>
+                </div>
+
+            </div>
+
+            {/* Displaying Links */}
             <div
             className='flex flex-col  w-full gap-4'>
                 {user.links.map(linkOb => {
@@ -178,7 +299,8 @@ const Personal = () => {
                         < >
                             <div
                             key={`${linkOb} container`}
-                            className='flex items-center'>
+                            className='flex items-center'
+                            style={addLink ? {filter : 'blur(5px)'} : {}}>
                                 <div 
                                 key={`${linkOb.name}`}
                                 className='border-zinc-700 text-black
@@ -216,10 +338,12 @@ const Personal = () => {
                 })}
             </div>
 
+            {/* Save Details Button */}
+
             <div
             onClick={handleUpdateDetails}
-            className='flex gap-3 text-white p-2 px-4 rounded-full'
-            style={{ backgroundColor : `rgb(${user.page_color})`}}>
+            className={`flex gap-3 text-white p-2 px-4 rounded-full`}
+            style={addLink ? {filter : 'blur(5px)'} : {backgroundColor : `rgb(${user.page_color})`}}>
                 <i className='bi bi-pencil-fill'/>
                 Update Details
             </div>
