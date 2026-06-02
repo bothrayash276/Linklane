@@ -7,6 +7,8 @@ const Personal = () => {
     const [user, setUser] = useState()
     const [loading, setLoading] = useState(true)
     const [addLink, setAddLink] = useState(false)
+    const [newLink, setNewLink] = useState("")
+    const [newLinkAddress, setNewLinkAddress] = useState("")
     const id = useParams().id
     const navigate = useNavigate()
 
@@ -85,8 +87,7 @@ const Personal = () => {
         setUser(newUser)
     }
 
-    const [newLink, setNewLink] = useState()
-    const [newLinkAddress, setNewLinkAddress] = useState()
+    
 
 
     // handle New Link input change
@@ -97,6 +98,7 @@ const Personal = () => {
 
     // Add new Link
     const addNewLink = () => {
+        
         if (!newLink || !newLinkAddress) {
             setEmpty(true)
             setTimeout(() => {
@@ -105,15 +107,24 @@ const Personal = () => {
             return
         }
 
-        const newLink = {
+        const newLinkObj = {
             'name' : newLink,
             'address' : newLinkAddress,
             'status' : true
         }
 
         const links = user.links
-        links.push(newLink)
-        console.log(links)
+        links.push(newLinkObj)
+        
+        const newUseObj = {
+            ...user,
+            'links' : links
+        }
+
+        setUser(newUseObj)
+        setNewLink("")
+        setNewLinkAddress("")
+        setAddLink(false)
     }
 
 
@@ -124,14 +135,6 @@ const Personal = () => {
         <div
         className='flex flex-col gap-10 relative min-h-screen w-full p-10 items-center font-[JetBrains_Mono]'
         >
-
-            {/* Empty Field Error Message */}
-            <div
-            className={`bg-red-600 px-4 p-2 flex gap-3 text-white rounded-full absolute right-10
-            ${empty ? "" : "hidden"}`}>
-                <i className='bi bi-exclamation-triangle-fill' />
-                Field cannot be empty
-            </div>
 
             <div
             className='flex flex-col gap-10 p-4 bg-slate-100 dark:bg-neutral-950 rounded-lg'
@@ -283,6 +286,7 @@ const Personal = () => {
                 <div
                 className='flex justify-center w-full'>
                     <div
+                onClick={addNewLink}
                 className='p-2 px-4 border rounded-lg border-zinc-700 border-x-3
                 dark:text-white text-black cursor-pointer'>
                     Add
@@ -346,6 +350,15 @@ const Personal = () => {
             style={addLink ? {filter : 'blur(5px)'} : {backgroundColor : `rgb(${user.page_color})`}}>
                 <i className='bi bi-pencil-fill'/>
                 Update Details
+            </div>
+
+
+            {/* Empty Field Error Message */}
+            <div
+            className={`bg-red-600 px-4 p-2 flex gap-3 text-white rounded-full absolute right-10
+            ${empty ? "" : "hidden"}`}>
+                <i className='bi bi-exclamation-triangle-fill' />
+                Field cannot be empty
             </div>
              
 
