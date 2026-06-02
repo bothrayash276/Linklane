@@ -33,7 +33,7 @@ const Header = () => {
     <>  
 
     <div
-    className='font-[JetBrains_Mono] flex justify-between h-10 items-center px-10 mb-10'>
+    className='font-[JetBrains_Mono] flex justify-between h-10 items-center px-10 sm:mb-10'>
         <Link
         to={`/${localStorage.getItem('id')}`} 
         className='dark:text-white flex gap-3 hover:underline' >

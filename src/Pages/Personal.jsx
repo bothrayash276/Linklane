@@ -5,6 +5,7 @@ import UserLinks from '../Components/Links'
 import {v4 as uid} from 'uuid'
 import ColorHex from '../Components/ColorHex'
 import Header from '../Components/Header'
+import ErrorOverlay from '../Components/ErrorOverlay'
 
 const Personal = () => {
     const [user, setUser] = useState()
@@ -56,6 +57,8 @@ const Personal = () => {
 
 
     // Form
+    const [error, setError] = useState(false)
+
     const handleUpdateDetails = async () => {
 
         const userData = {
@@ -82,10 +85,15 @@ const Personal = () => {
 
         const result = await response.json()
 
-        if(!response.ok) throw new Error(result.message)
-            
-        window.location.reload()
-        alert(result.message)
+        if(!response.ok) {
+            setError(result.message)
+            setTimeout(() => {
+                setError(false)
+            }, 2000);
+            throw new Error(result.message)
+        }
+        else window.location.reload()    
+        
 
     }
 
@@ -200,10 +208,18 @@ const Personal = () => {
         <div
         className='flex flex-col gap-10 relative min-h-screen w-full px-10 py-5 items-center font-[JetBrains_Mono] overflow-hidden'
         >
+
             <div
             className='w-full'>
                 <Header />
             </div>
+
+            
+           <div
+           className={`${error ? "" : "hidden"}`}>
+            <ErrorOverlay message={error} />
+           </div>
+
 
             {/* Personal Details */}
             <div
