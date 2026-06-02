@@ -19,7 +19,8 @@ export default async function userLogin(email, password) {
     }
 
     const accessToken = data.accessToken
+    const id = data.id
     localStorage.setItem('accessToken', accessToken)
-    return 1
+    return id
 
 }

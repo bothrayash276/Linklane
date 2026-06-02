@@ -19,7 +19,7 @@ const Login = () => {
 
   const logInUser = async () => {
     const result = await userLogin(email, password)
-    if (result) navigate('/')
+    if (result) navigate(`/${result}`)
   }
 
   return (
@@ -27,8 +27,8 @@ const Login = () => {
       <div
       className='min-h-screen w-full flex justify-center'>
         <div
-      className='min-h-screen px-10 rounded-lg flex flex-col items-center justify-center gap-10
-      dark:bg-neutral-900 bg-slate-100'>
+      className='min-h-screen rounded-lg flex flex-col items-center gap-10
+      dark:bg-neutral-900 bg-slate-100 p-20'>
 
         {/* Login Text */}
         <div

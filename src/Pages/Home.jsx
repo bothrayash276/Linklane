@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import UserLinks from '../Components/Links'
 
 const Home = () => {
     const id  = useParams().id
@@ -47,7 +48,7 @@ const Home = () => {
     return (
     <>
     <div
-    className={`min-h-screen w-full flex justify-center p-10 relative`}
+    className={`min-h-screen w-full flex flex-col items-center p-10 relative`}
     style={{ backgroundColor : `rgb(${user.page_color}, 0.2)`}}>
 
         {/* Copy To Clipboard overlay */}
@@ -88,22 +89,24 @@ const Home = () => {
                 onClick={copyToClipboard}
                 style={{ backgroundColor : `rgb(${user.page_color})`}}>
                     <i className='bi bi-share-fill text-white'/>
-                    Share
+                    <span className='not-sm:hidden'>Share</span>
                 </div>
             </div>
 
         </div>
 
         {/* Links */}
-        <div>
+        <div
+        className='flex flex-wrap gap-10 p-20'>
             {
             user.links.map(link => {
                 return (
                     <>
-                        <Link
-                        to={link.address}>
-                            {link.name}
-                        </Link>
+                        <UserLinks
+                        name={link.name}
+                        address={link.address}
+                        status={link.status}
+                        page_color={user.page_color} />
                     </>
                 )
             })
