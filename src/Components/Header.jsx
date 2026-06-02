@@ -19,7 +19,6 @@ const Header = () => {
     }, [theme])
 
     const handleThemeChange = () => {
-        console.log('work')
         if (theme === 'dark') {
             localStorage.setItem('theme', 'light')
             setTheme('light')
@@ -34,26 +33,26 @@ const Header = () => {
     <>  
 
     <div
-    className='not-sm:hidden font-[JetBrains_Mono] flex justify-between h-10 items-center px-10 mb-10'>
+    className='font-[JetBrains_Mono] flex justify-between h-10 items-center px-10 mb-10'>
         <Link
         to={`/${localStorage.getItem('id')}`} 
         className='dark:text-white flex gap-3 hover:underline' >
             <i className='bi bi-house-door-fill dark:text-white text-black' />
-            Home
+            <span className='not-sm:hidden'>Home</span>
         </Link>
 
         <Link
         to={`/${localStorage.getItem('id')}/profile`}
         className='dark:text-white flex gap-3 hover:underline'>
             <i className='bi bi-person-badge dark:text-white text-black' />
-            Profile
+            <span className='not-sm:hidden'>Profile</span>
         </Link>
 
         <Link
         className='dark:text-white flex gap-3 hover:underline'
         to={`/login`}>
             <i className='bi bi-lock-fill dark:text-white text-black' />
-            Sign In
+            <span className='not-sm:hidden'>Sign In</span>
         </Link>
 
         <i 
