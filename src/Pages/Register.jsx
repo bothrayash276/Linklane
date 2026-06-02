@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import registerUser from '../api/RegisterUSER'
 import Header from '../Components/Header'
 import { Link } from 'react-router-dom'
+import ErrorOverlay from '../Components/ErrorOverlay'
 
 
 const Register = () => {
@@ -37,26 +38,29 @@ const Register = () => {
         else if (e.target.id === 'color') setAccent_color(e.target.value)
     }
 
+    const [error, setError] = useState(false)
     const handleRegister = async () => {
         if (!name || !email || !password || !bio || !file) {
             setEmpty(true)
             return
         }
-        const result = await registerUser(file, name, email, password, bio, accent_color)
-        console.log(result)
-        if (result === -1) navigate('/login')
-        else navigate('/')
+        const result = await registerUser(file, name, email, password, bio, accent_color, setError)
     }
 
 
   return (
     <>
         <div
-        className='min-h-screen px-10 py-5'>
+        className='min-h-screen px-10 py-5 relative'>
 
             <div
             className='w-full'>
                 <Header />
+            </div>
+
+            <div
+            className={`${error ? "" : "hidden"}`}>
+                <ErrorOverlay message={error} />
             </div>
 
             <div

@@ -20,13 +20,11 @@ const cloudinary = async (file) => {
 
         const data = await response.json()
 
-        setNewImage(data.secure_url)
         return data.secure_url
-        console.log(data.secure_url)
     }
 
 
-export default async function registerUser(imgFile, name, email, password, bio, pageHex) {
+export default async function registerUser(imgFile, name, email, password, bio, pageHex, setError) {
     const url = await cloudinary(imgFile)
     // Converting hex to rgb
     const pageColor = hexToRgbString(pageHex)
@@ -40,8 +38,6 @@ export default async function registerUser(imgFile, name, email, password, bio, 
         'page_color' : pageColor
     }
 
-    console.log(`${import.meta.env.VITE_BACKEND_URI}/register`)
-
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/register`, {
         method : 'POST',
         headers : {
@@ -50,12 +46,13 @@ export default async function registerUser(imgFile, name, email, password, bio, 
         body : JSON.stringify(userData)
     })
 
-    console.log(response)
-
     const result = await response.json()
 
     if(response.status === 409) {
-       // throw new Error(result.message)
+        setError(result.message)
+        setTimeout(() => {
+            setError(false)
+        }, 3000);
         return -1
     }
     else if (response.status === 201) {
