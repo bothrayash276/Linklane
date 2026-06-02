@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import userLogin from '../api/User'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Header from '../Components/Header'
 
 const Login = () => {
 
@@ -19,16 +21,25 @@ const Login = () => {
 
   const logInUser = async () => {
     const result = await userLogin(email, password)
+    localStorage.setItem('id', result)
     if (result) navigate(`/${result}`)
   }
 
   return (
     <>
       <div
-      className='min-h-screen w-full flex justify-center'>
+      className='min-h-screen px-10 py-5'>
+
         <div
-      className='min-h-screen rounded-lg flex flex-col items-center gap-10
-      dark:bg-neutral-900 bg-slate-100 p-20'>
+        w-full>
+          <Header />
+        </div>
+
+        <div
+      className=' w-full flex justify-center'>
+        <div
+      className='rounded-lg flex flex-col items-center gap-10
+      dark:bg-neutral-900 bg-slate-100 px-20 py-10'>
 
         {/* Login Text */}
         <div
@@ -117,6 +128,14 @@ const Login = () => {
           Login
         </div>
 
+
+        <Link
+        to={`/register`}
+        className='hover:underline dark:text-[#00a6ff] text-[#006aff]'>
+          Create a account?
+        </Link>
+
+      </div>
       </div>
       </div>
     </>

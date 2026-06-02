@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import UserLinks from '../Components/Links'
+import Header from '../Components/Header'
 
 const Home = () => {
     const id  = useParams().id
@@ -49,8 +50,13 @@ const Home = () => {
     return (
     <>
     <div
-    className={`min-h-screen w-full flex flex-col items-center gap-5 p-10 relative`}
+    className={`min-h-screen w-full flex flex-col items-center gap-5 px-10 py-5 relative`}
     style={{ backgroundColor : `rgb(${user.page_color}, 0.2)`}}>
+
+        <div
+        className='w-full'>
+            <Header />
+        </div>
 
         {/* Copy To Clipboard overlay */}
         <div
@@ -70,14 +76,14 @@ const Home = () => {
             className='flex flex-col justify-center'>
 
                 <div 
-                className='text-4xl not-sm:text-2xl font-bold font-[JetBrains_Mono] text-center'
+                className='text-4xl not-sm:text-2xl font-bold font-[JetBrains_Mono] not-sm:text-center'
                 style={{ color : `rgb(${user.page_color})` }} >
                     {user.name}
                 </div>
 
                 <div
                 className='dark:text-[rgb(255,255,255,0.4)] text-[rgb(0,0,0,0.6)]
-                 font-[JetBrains_Mono] text-sm text-center'>
+                 font-[JetBrains_Mono] text-sm not-sm:text-center'>
                     {user.bio}
                 </div>
 

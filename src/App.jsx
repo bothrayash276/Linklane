@@ -19,7 +19,6 @@ const App = () => {
     path='/login'
     element={
       <>
-      <Header />
       <Login/>
       </>
     }
@@ -28,7 +27,6 @@ const App = () => {
     path='/'
     element={
       <>
-      <Header />
       <Login/>
       </>
     }
@@ -39,7 +37,6 @@ const App = () => {
     path='/register'
     element={
       <>
-        <Header/>
         <Register/>
       </>
     }
@@ -49,7 +46,6 @@ const App = () => {
   <Route
     path={'/:id'}
     element={<>
-        <Header/>
         <Home/>
       </>}
   />
@@ -59,7 +55,6 @@ const App = () => {
     path={'/:id/profile'}
     element={
       <>
-      <Header/>
       <Personal/>
       </>
     }

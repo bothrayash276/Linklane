@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import UserLinks from '../Components/Links'
 import {v4 as uid} from 'uuid'
 import ColorHex from '../Components/ColorHex'
+import Header from '../Components/Header'
 
 const Personal = () => {
     const [user, setUser] = useState()
@@ -198,8 +199,12 @@ const Personal = () => {
   return (
     <> 
         <div
-        className='flex flex-col gap-10 relative min-h-screen w-full p-10 items-center font-[JetBrains_Mono] overflow-hidden'
+        className='flex flex-col gap-10 relative min-h-screen w-full px-10 py-5 items-center font-[JetBrains_Mono] overflow-hidden'
         >
+            <div
+            className='w-full'>
+                <Header />
+            </div>
 
             {/* Personal Details */}
             <div

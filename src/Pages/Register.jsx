@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import registerUser from '../api/RegisterUSER'
+import Header from '../Components/Header'
+import { Link } from 'react-router-dom'
 
 
 const Register = () => {
@@ -50,7 +52,16 @@ const Register = () => {
   return (
     <>
         <div
-        className='min-h-screen w-full flex justify-center not-sm:dark:bg-neutral-900 not-sm:bg-slate-100'>
+        className='min-h-screen px-10 py-5'>
+
+            <div
+            className='w-full'>
+                <Header />
+            </div>
+
+            <div
+        className='w-full flex justify-center not-sm:dark:bg-neutral-900 not-sm:bg-slate-100'>
+
             <div
             className='flex flex-col gap-5 p-5 px-10 sm:min-w-xl items-center dark:bg-neutral-900 bg-slate-100 
             rounded-lg'>
@@ -201,7 +212,14 @@ const Register = () => {
                     Register
                 </div>
 
+                <Link
+                    to={`/login`}
+                    className='hover:underline dark:text-[#00a6ff] text-[#006aff]'>
+                        Sign in to a account?
+                </Link>
+
             </div>
+        </div>
         </div>
     </>
   )
