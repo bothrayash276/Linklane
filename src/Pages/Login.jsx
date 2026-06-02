@@ -10,19 +10,27 @@ const Login = () => {
   // Form State
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [invalid, setInvalid] = useState(false)
 
   const navigate = useNavigate()
 
   // Fxn to handle form
   const handleForm = e => {
+    setInvalid(false)
     if (e.target.id === 'email') setEmail(e.target.value)
     else if (e.target.id === 'password') setPassword(e.target.value)
   }
 
+  
   const logInUser = async () => {
     const result = await userLogin(email, password)
-    localStorage.setItem('id', result)
-    if (result) navigate(`/${result}`)
+    if (result[0]) {
+      localStorage.setItem('id', result[1])
+      navigate(`/${result[1]}`)
+    }
+    else {
+      setInvalid(true)
+    }
   }
 
   return (
@@ -31,7 +39,7 @@ const Login = () => {
       className='min-h-screen px-10 py-5'>
 
         <div
-        w-full>
+        className='w-full'>
           <Header />
         </div>
 
@@ -115,6 +123,11 @@ const Login = () => {
         </div>
         </div>
 
+        <div
+        className={`text-red-600 flex gap-3 ${invalid ? " " : "hidden"}`}>
+          <i className='bi bi-exclamation-triangle-fill text-lg' />
+          Invalid Credentials
+        </div>
 
         {/* SignUp Button */}
         <div

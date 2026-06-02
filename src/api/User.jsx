@@ -14,13 +14,12 @@ export default async function userLogin(email, password) {
     const data = await response.json()
 
     if (response.status !== 200) {
-        console.log(data.message)
-        return 0
+        return [0, data.message]
     }
 
     const accessToken = data.accessToken
     const id = data.id
     localStorage.setItem('accessToken', accessToken)
-    return id
+    return [1, id]
 
 }
