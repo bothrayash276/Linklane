@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import UserLinks from '../Components/Links'
 import {v4 as uid} from 'uuid'
-import ColorHex from '../Components/ColorHex'
+import ColorHex, { ColorRGB } from '../Components/ColorHex'
 import Header from '../Components/Header'
 import ErrorOverlay from '../Components/ErrorOverlay'
 import bg1 from '../../public/bg1.webp'
@@ -20,6 +20,7 @@ const Personal = () => {
     const [newImage, setNewImage] = useState(null)
     const [file, setFile] = useState(null)
     const [newLinkAddress, setNewLinkAddress] = useState("")
+    const [originalPage, setOriginalPage] = useState(null)
     const {theme, setTheme, page, setPage, colorCode} = useContext(ThemeContext)
     const id = useParams().id
     const navigate = useNavigate()
@@ -53,6 +54,7 @@ const Personal = () => {
             
             setUser(json)
             setNewImage(json.img_url)
+            setOriginalPage(ColorRGB(json.page_color))
             setLoading(false)
 
 
@@ -60,6 +62,12 @@ const Personal = () => {
 
         checkPermission()
     }, [])
+    
+    useEffect(() => {
+        return () => {
+            if (originalPage) setPage(originalPage)
+        }
+    }, [originalPage])
 
 
     // Form
@@ -67,6 +75,9 @@ const Personal = () => {
     const [color, setColor] = useState()
 
     const handleUpdateDetails = async () => {
+
+        
+        localStorage.setItem('page_color', user.page_color)
 
         const userData = {
             'id' : id,
@@ -107,7 +118,6 @@ const Personal = () => {
     // handle Color
     const handleColor = (e) => {
         const code = e.target.id
-        localStorage.setItem('page_color', ColorHex(code))
         const value = user.page_color
         setPage(code)
         setUser({
