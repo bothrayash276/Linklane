@@ -254,7 +254,7 @@ const Personal = () => {
 
             {/* Personal Details */}
             <div
-            className='flex flex-col gap-10 p-4 bg-slate-100 dark:bg-neutral-950/75 rounded-lg'
+            className='flex flex-col gap-10 p-4  bg-neutral-950/75 rounded-lg'
             style={addLink ? {filter : 'blur(5px)'} : {}}>
                 
                 
@@ -283,9 +283,9 @@ const Personal = () => {
                 <div
                 className='flex'>
                     <i className='bi bi-person-fill
-                        border-zinc-700 text-gray-500
+                        border-zinc-700 
                         border-t border-b rounded-l-lg border-l 
-                        dark:text-gray-400 p-2 px-4' />
+                        text-gray-400 p-2 px-4' />
                 
                 <input
                 id='name' 
@@ -293,17 +293,17 @@ const Personal = () => {
                 placeholder='Name'
                 defaultValue={user.name}
                 className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-120
-                dark:placeholder:text-gray-400 placeholder:text-gray-500
-                    dark:text-white text-black outline-none' />
+                placeholder:text-gray-400 
+                    text-white outline-none' />
                 </div>
 
                 {/* Bio */}
                 <div
                 className='flex'>
                     <i className='bi bi-card-text
-                        border-zinc-700 text-gray-500
+                        border-zinc-700 
                         border-t border-b rounded-l-lg border-l 
-                        dark:text-gray-400 p-2 px-4' />
+                        text-gray-400 p-2 px-4' />
                     
                     <textarea
                     id='bio' 
@@ -311,8 +311,8 @@ const Personal = () => {
                     placeholder='Tell us something about yourself...'
                     defaultValue={user.bio}
                     className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-120
-                    dark:placeholder:text-gray-400 placeholder:text-gray-500 not-sm:w-full
-                     dark:text-white text-black outline-none min-h-50 resize-none min-w-[214.4px]' />
+                    placeholder:text-gray-400  not-sm:w-full
+                     text-white  outline-none min-h-50 resize-none min-w-[214.4px]' />
                 </div>
 
                 {/* Accent Color */}
@@ -320,9 +320,9 @@ const Personal = () => {
                 className='w-full flex align-middle justify-between'>
                     <i
                     className='bi bi-eyedropper 
-                      border-zinc-700 text-gray-500
+                      border-zinc-700 
                         border-t border-b rounded-l-lg border-l 
-                        dark:text-gray-400 p-2 px-4 text-xl'/>
+                    text-gray-400 p-2 px-4 text-xl'/>
 
                          <div
                     className='h-[41.59] border border-zinc-700 rounded-r-lg flex-1 items-center flex overflow-hidden p-2 gap-3'>
@@ -373,11 +373,11 @@ const Personal = () => {
             {/* Add Link Card */}
             <div
             className={`${addLink ? "" : "hidden"} absolute top-10 flex flex-col gap-10
-            dark:bg-neutral-900 bg-slate-100 p-10 rounded-lg`}>
+            bg-neutral-900/80  p-10 rounded-lg`}>
 
                 <div
                 className='font-[Jockey_One] text-6xl text-center
-                text-black dark:text-white'>
+                text-white'>
                     ADD LINK
                 </div>
                 
@@ -387,15 +387,15 @@ const Personal = () => {
 
                     <i className='bi bi-alphabet-uppercase text-xl p-2 px-4 rounded-l-lg 
                     border-t border-b border-l-3 border-zinc-700 
-                    dark:text-white text-black' />
+                    text-white ' />
 
                     <input 
                     id='link_name'
                     type="text"
                     onChange={handlelLinkValue}
                     placeholder='Add link'
-                    className='placeholder:text-gray-500 placeholder:dark:text-gray-400
-                    border border-r-3 rounded-r-lg border-zinc-700 text-black dark:text-white
+                    className=' placeholder:text-gray-400
+                    border border-r-3 rounded-r-lg border-zinc-700 text-white
                     p-2 px-4 sm:min-w-120 outline-none' />
 
                 </div>
@@ -406,15 +406,15 @@ const Personal = () => {
 
                     <i className='bi bi-link-45deg text-xl p-2 px-4 rounded-l-lg 
                     border-t border-b border-l-3 border-zinc-700 
-                    dark:text-white text-black' />
+                    text-white ' />
 
                     <input 
                     id='link_address'
                     type="link"
                     onChange={handlelLinkValue}
                     placeholder='Add link'
-                    className='placeholder:text-gray-500 placeholder:dark:text-gray-400
-                    border border-r-3 rounded-r-lg border-zinc-700 text-black dark:text-white
+                    className=' placeholder:text-gray-400
+                    border border-r-3 rounded-r-lg border-zinc-700 text-white
                     p-2 px-4 sm:min-w-120 outline-none' />
 
                 </div>
@@ -425,14 +425,14 @@ const Personal = () => {
                     <div
                 onClick={addNewLink}
                 className='p-2 px-4 border rounded-lg border-zinc-700 border-x-3
-                dark:text-white text-black cursor-pointer'>
+                text-white  cursor-pointer'>
                     Add
                     </div>
 
                     <div
                 onClick={()=>{setAddLink(false)}}
                 className='p-2 px-4 border rounded-lg border-zinc-700 border-x-3
-                dark:text-white text-black cursor-pointer'>
+                text-white cursor-pointer '>
                     Cancel
                     </div>
 
@@ -453,10 +453,10 @@ const Personal = () => {
                             style={addLink ? {filter : 'blur(5px)'} : {}}>
                                 <div 
                                 key={`${linkOb.name}`}
-                                className='border-zinc-700 text-black
-                                dark:bg-neutral-950/75
+                                className='border-zinc-700
+                                bg-neutral-950/75
                                     border-t border-b rounded-l-lg border-l-3 
-                                    dark:text-white p-2 px-4 min-w-30'>
+                                    text-white p-2 px-4 min-w-30'>
                                         {linkOb.name}
                                  </div>
                                 
@@ -465,8 +465,7 @@ const Personal = () => {
                                 to = {linkOb.address}
                                 target='_blank'
                                 className='border-zinc-700 hover:underline
-                                    border bg-zinc-200 dark:bg-neutral-950/75 text-blue-600
-                                    dark:text-white p-2 px-4 sm:flex-1 flex gap-3'>
+                                    border bg-neutral-950/75 text-blue-600 p-2 px-4 sm:flex-1 flex gap-3'>
                                         <i className='bi bi-link' />
                                         <span className='not-sm:hidden'>{linkOb.address}</span>
                                  </Link>
@@ -477,7 +476,7 @@ const Personal = () => {
                                     <div
                                     onClick={() => {handleDelete(linkOb)}}
                                     className={`bi bi-trash-fill cursor-pointer
-                                    dark:text-white text-black`}>
+                                text-white`}>
 
                                     </div>
                                 </div> 

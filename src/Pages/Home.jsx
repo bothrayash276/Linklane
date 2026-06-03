@@ -84,7 +84,7 @@ const Home = () => {
                 </div>
 
                 <div
-                className='dark:text-[rgb(255,255,255,0.4)] text-[rgb(0,0,0,0.6)]
+                className='text-[rgb(255,255,255,0.4)]
                  font-[JetBrains_Mono] text-sm not-sm:text-center'>
                     {user.bio}
                 </div>

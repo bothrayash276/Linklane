@@ -37,22 +37,22 @@ const Header = () => {
     className='font-[JetBrains_Mono] flex justify-between h-10 items-center px-10 sm:mb-10'>
         <Link
         to={`/${localStorage.getItem('id')}`} 
-        className='dark:text-white flex gap-3 hover:underline' >
-            <i className='bi bi-house-door-fill dark:text-white text-black' />
+        className='text-white flex gap-3 hover:underline' >
+            <i className='bi bi-house-door-fill text-white' />
             <span className='not-sm:hidden'>Home</span>
         </Link>
 
         <Link
         to={`/${localStorage.getItem('id')}/profile`}
-        className='dark:text-white flex gap-3 hover:underline'>
-            <i className='bi bi-person-badge dark:text-white text-black' />
+        className='text-white flex gap-3 hover:underline'>
+            <i className='bi bi-person-badge text-white ' />
             <span className='not-sm:hidden'>Profile</span>
         </Link>
 
         <Link
-        className='dark:text-white flex gap-3 hover:underline'
+        className='text-white flex gap-3 hover:underline'
         to={`/login`}>
-            <i className='bi bi-lock-fill dark:text-white text-black' />
+            <i className='bi bi-lock-fill text-white ' />
             <span className='not-sm:hidden'>Sign In</span>
         </Link>
 
