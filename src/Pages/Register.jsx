@@ -26,7 +26,6 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [bio, setBio] = useState("")
-    const [accent_color, setAccent_color] = useState("#00a6ff")
     const [empty, setEmpty] = useState(false)
 
     const handleForm = (e) => {
@@ -35,7 +34,6 @@ const Register = () => {
         else if (e.target.id === 'email') setEmail(e.target.value)
         else if (e.target.id === 'password') setPassword(e.target.value)
         else if (e.target.id === 'bio') setBio(e.target.value)
-        else if (e.target.id === 'color') setAccent_color(e.target.value)
     }
 
     const [error, setError] = useState(false)
@@ -44,14 +42,14 @@ const Register = () => {
             setEmpty(true)
             return
         }
-        const result = await registerUser(file, name, email, password, bio, accent_color, setError)
+        const result = await registerUser(file, name, email, password, bio, '#b0efbc', setError)
     }
 
 
   return (
     <>
         <div
-        className='min-h-screen px-10 py-5 relative'>
+        className='min-h-screen px-10 py-5 relative overflow-hidden'>
 
             <div
             className='w-full'>
@@ -64,16 +62,15 @@ const Register = () => {
             </div>
 
             <div
-        className='w-full flex justify-center not-sm:dark:bg-neutral-900 not-sm:bg-slate-100'>
+        className='w-full flex justify-center '>
 
             <div
-            className='flex flex-col gap-5 p-5 px-10 sm:min-w-xl items-center dark:bg-neutral-900 bg-slate-100 
-            rounded-lg'>
+            className='flex flex-col gap-5 p-5 px-10 sm:min-w-xl items-center rounded-lg'>
 
                 {/* Register Title */}
                 <div
                 className='w-full text-6xl text-center
-                dark:text-[#00a6ff] text-[#006aff] font-[Jockey_One] font-bold'>
+                 text-[#a7cf4a] font-[Jockey_One] font-bold'>
                     Register
                 </div>
 
@@ -92,16 +89,16 @@ const Register = () => {
                     {!image && <>
                             <i className="text-6xl
                         bi bi-person-circle
-                        dark:text-white text-black" />
+                        text-white" />
                         <label htmlFor="image"
-                        className='dark:text-white text-black font-[JetBrains_Mono]' >No Image Uploaded</label>
+                        className='text-[#a7cf4a] font-[JetBrains_Mono]' >No Image Uploaded</label>
                         </> }
                     
                     { image && <>
                         <img src={image} alt='prev'
                     className='w-20 h-20 object-cover rounded-full '/>
                     <label htmlFor="image2"
-                    className='dark:text-white text-black font-[JetBrains_Mono]'>Profile Photo</label>
+                    className='text-[#a7cf4a] font-[JetBrains_Mono]'>Profile Photo</label>
                      </>}
 
                     
@@ -114,9 +111,9 @@ const Register = () => {
                 <div
                 className='flex'>
                     <i className='bi bi-person-fill
-                        border-zinc-700 text-gray-500
+                        border-zinc-700 bg-neutral-950/75
                         border-t border-b rounded-l-lg border-l 
-                        dark:text-gray-400 p-2 px-4' />
+                        text-gray-400 p-2 px-4' />
                     
                     <input
                     id='name' 
@@ -124,17 +121,17 @@ const Register = () => {
                     onChange={handleForm}
                     placeholder='Name'
                     className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-80
-                    dark:placeholder:text-gray-400 placeholder:text-gray-500
-                     dark:text-white text-black outline-none' />
+                    placeholder:text-gray-400 bg-neutral-950/75
+                     text-white outline-none' />
                 </div>
 
                 {/* Email */}
                 <div
                 className='flex'>
                     <i className='bi bi-envelope-fill
-                        border-zinc-700 text-gray-500
+                        border-zinc-700 bg-neutral-950/75
                         border-t border-b rounded-l-lg border-l 
-                        dark:text-gray-400 p-2 px-4' />
+                        text-gray-400 p-2 px-4' />
                     
                     <input
                     id='email' 
@@ -142,17 +139,17 @@ const Register = () => {
                     onChange={handleForm}
                     placeholder='Email'
                     className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-80
-                    dark:placeholder:text-gray-400 placeholder:text-gray-500
-                     dark:text-white text-black outline-none' />
+                    placeholder:text-gray-400 bg-neutral-950/75
+                     text-white  outline-none' />
                 </div>
 
                 {/* Password */}
                 <div
                 className='flex'>
                     <i className='bi bi-key-fill
-                        border-zinc-700 text-gray-500
+                        border-zinc-700 bg-neutral-950/75
                         border-t border-b rounded-l-lg border-l 
-                        dark:text-gray-400 p-2 px-4' />
+                        text-gray-400 p-2 px-4' />
                     
                     <input
                     id='password' 
@@ -160,17 +157,17 @@ const Register = () => {
                     onChange={handleForm}
                     placeholder='Password'
                     className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-80
-                    dark:placeholder:text-gray-400 placeholder:text-gray-500
-                     dark:text-white text-black outline-none' />
+                    placeholder:text-gray-400 bg-neutral-950/75
+                     text-white outline-none' />
                 </div>
 
                 {/* Bio */}
                 <div
                 className='flex'>
                     <i className='bi bi-card-text
-                        border-zinc-700 text-gray-500
+                        border-zinc-700 bg-neutral-950/75
                         border-t border-b rounded-l-lg border-l 
-                        dark:text-gray-400 p-2 px-4' />
+                        text-gray-400 p-2 px-4' />
                     
                     <textarea
                     id='bio' 
@@ -178,26 +175,8 @@ const Register = () => {
                     onChange={handleForm}
                     placeholder='Tell us a little about yourself...'
                     className='border border-zinc-700 rounded-r-lg p-2 px-4 sm:min-w-80
-                    dark:placeholder:text-gray-400 placeholder:text-gray-500
-                     dark:text-white text-black outline-none min-h-50 resize-none min-w-[214.4px]' />
-                </div>
-
-                {/* Accent Color */}
-                <div
-                className='w-full flex align-middle justify-center'>
-                    <i
-                    className='bi bi-eyedropper 
-                      border-zinc-700 text-gray-500
-                        border-t border-b rounded-l-lg border-l 
-                        dark:text-gray-400 p-2 px-4'/>
-                    <input 
-                    id='color'
-                    type="color"
-                    defaultValue={'#00a6ff'}
-                    className='rounded-r-lg h-[41.6px] p-2 px-4 
-                    border not-sm:flex-1
-                    sm:min-w-80 border-zinc-700'
-                    onChange={handleForm} />
+                    placeholder:text-gray-400 bg-neutral-950/75
+                     text-white outline-none min-h-50 resize-none min-w-[214.4px]' />
                 </div>
                 
                 {/* Error Message */}
@@ -210,15 +189,15 @@ const Register = () => {
                 <div
                 onClick={handleRegister}
                 className='text-center font-[JetBrains_Mono] border-2 p-2 px-4 rounded-lg
-                dark:text-[#00a6ff] text-[#006aff] dark:border-[#00a6ff] border-[#006aff]
-                dark:hover:bg-[#00a6ff] hover:bg-[#006aff] hover:text-white
+                text-[#a7cf4a] border-[#a7cf4a]
+                hover:bg-[#a7cf4a] hover:text-white
                 cursor-pointer'>
                     Register
                 </div>
 
                 <Link
                     to={`/login`}
-                    className='hover:underline dark:text-[#00a6ff] text-[#006aff]'>
+                    className='hover:underline text-[#a7cf4a]'>
                         Sign in to a account?
                 </Link>
 
