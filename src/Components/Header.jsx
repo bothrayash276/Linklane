@@ -56,12 +56,12 @@ const Header = () => {
             <span className='not-sm:hidden'>Sign In</span>
         </Link>
 
-        <i 
+        {/* <i 
         onClick={handleThemeChange}
         className={`${theme ==='light' ? "" : "hidden"} bi bi-brightness-high-fill text-black text-xl cursor-pointer`} />
         <i 
         onClick={handleThemeChange}
-        className={`${theme ==='dark' ? "" : "hidden"} bi bi-moon-fill text-white cursor-pointer`} />
+        className={`${theme ==='dark' ? "" : "hidden"} bi bi-moon-fill text-white cursor-pointer`} /> */}
 
     </div>
 

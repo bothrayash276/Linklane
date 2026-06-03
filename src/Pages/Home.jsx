@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import UserLinks from '../Components/Links'
 import Header from '../Components/Header'
+import { ThemeContext } from '../Components/ThemeContext'
 
 const Home = () => {
     const id  = useParams().id
 
     const [user, setUser] = useState()
     const [loading, setLoading] = useState(true)
+    const {colorCode} = useContext(ThemeContext)
     
     useEffect(() => {
         const getData = async () => {
@@ -94,21 +96,18 @@ const Home = () => {
             >
                 <div className='p-2 px-4 text-white rounded-full font-bold flex gap-3 cursor-pointer'
                 onClick={copyToClipboard}
-                style={{ backgroundColor : `rgb(${user.page_color})`}}>
+                style={{ backgroundColor : `${colorCode[user.page_color]}`}}>
                     <i className='bi bi-share-fill text-white'/>
                     Share
                 </div>
+
             </div>
 
         </div>
 
-        <div
-            className='text-6xl font-[Jockey_One] mt-10'
-            style={{ color : `rgb(${user.page_color})`}}>LINKS</div>
-
         {/* Links */}
         <div
-        className='flex flex-wrap justify-center gap-10'>
+        className='flex flex-wrap justify-center gap-10 mt-5'>
 
             {
             user.links.map(link => {
@@ -118,7 +117,9 @@ const Home = () => {
                         name={link.name}
                         address={link.address}
                         status={link.status}
-                        page_color={user.page_color} />
+                        page_color={colorCode[user.page_color]} />
+
+                        {console.log(user.page_color)}
                     </>
                 )
             })
