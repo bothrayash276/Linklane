@@ -20,7 +20,7 @@ const Personal = () => {
     const [newImage, setNewImage] = useState(null)
     const [file, setFile] = useState(null)
     const [newLinkAddress, setNewLinkAddress] = useState("")
-    const {theme, setTheme, page, setPage} = useContext(ThemeContext)
+    const {theme, setTheme, page, setPage, colorCode} = useContext(ThemeContext)
     const id = useParams().id
     const navigate = useNavigate()
 
@@ -108,7 +108,13 @@ const Personal = () => {
     const handleColor = (e) => {
         const code = e.target.id
         localStorage.setItem('page_color', ColorHex(code))
+        const value = user.page_color
         setPage(code)
+        setUser({
+            ...user,
+            'page_color' : ColorHex(code)
+        })
+
         setColor(code)
     }
     
@@ -238,7 +244,7 @@ const Personal = () => {
 
             {/* Personal Details */}
             <div
-            className='flex flex-col gap-10 p-4 bg-slate-100 dark:bg-neutral-950 rounded-lg'
+            className='flex flex-col gap-10 p-4 bg-slate-100 dark:bg-neutral-950/75 rounded-lg'
             style={addLink ? {filter : 'blur(5px)'} : {}}>
                 
                 
@@ -250,7 +256,7 @@ const Personal = () => {
                     style={{ borderColor : `rgb(${user.page_color})`}} />
 
                     <div
-                    style={{ backgroundColor : `rgb(${user.page_color})`}}
+                    style={{ backgroundColor : `${colorCode[user.page_color]}`}}
                     className='font-[JetBrains_Mono] flex gap-3 text-white p-2 px-4 rounded-full relative cursor-pointer'>
                         <i className='"bi bi-cloud-arrow-up-fill'/>
                         <span className='sm:hidden'>Upload</span>
@@ -347,7 +353,7 @@ const Personal = () => {
                 <div
                 onClick={()=>{setAddLink(true)}}
             className='p-2 px-4 text-white flex gap-3 justify-end rounded-lg cursor-pointer'
-            style={addLink ? {filter : 'blur(5px)'} : {backgroundColor : `rgb(${user.page_color})`}}>
+            style={addLink ? {filter : 'blur(5px)'} : {backgroundColor : `${colorCode[user.page_color]}`}}>
                 <i className='bi bi-pencil-fill' />
                 Add Link
             </div>
@@ -438,6 +444,7 @@ const Personal = () => {
                                 <div 
                                 key={`${linkOb.name}`}
                                 className='border-zinc-700 text-black
+                                dark:bg-neutral-950/75
                                     border-t border-b rounded-l-lg border-l-3 
                                     dark:text-white p-2 px-4 min-w-30'>
                                         {linkOb.name}
@@ -448,14 +455,14 @@ const Personal = () => {
                                 to = {linkOb.address}
                                 target='_blank'
                                 className='border-zinc-700 hover:underline
-                                    border bg-zinc-200 dark:bg-neutral-950 text-blue-600
+                                    border bg-zinc-200 dark:bg-neutral-950/75 text-blue-600
                                     dark:text-white p-2 px-4 sm:flex-1 flex gap-3'>
                                         <i className='bi bi-link' />
                                         <span className='not-sm:hidden'>{linkOb.address}</span>
                                  </Link>
 
                                 <div
-                                className='w-10.5 h-10.5 flex items-center justify-center
+                                className='w-10.5 h-10.5 flex items-center justify-center bg-neutral-950/75
                                 border-r border-t border-b border-zinc-700 '>
                                     <div
                                     onClick={() => {handleDelete(linkOb)}}
@@ -467,7 +474,7 @@ const Personal = () => {
                                 
 
                                 <div
-                                className='w-10.5 h-10.5 flex items-center justify-center
+                                className='w-10.5 h-10.5 flex items-center justify-center bg-neutral-950/75
                                 border-r-3 border-t border-b border-zinc-700 rounded-r-lg '>
                                     <div
                                     onClick={() => {handleCheckbox(linkOb)}}
@@ -488,7 +495,7 @@ const Personal = () => {
             <div
             onClick={handleUpdateDetails}
             className={`flex gap-3 text-white p-2 px-4 rounded-full cursor-pointer`}
-            style={addLink ? {filter : 'blur(5px)'} : {backgroundColor : `rgb(${user.page_color})`}}>
+            style={addLink ? {filter : 'blur(5px)'} : {backgroundColor : `${colorCode[user.page_color]}`}}>
                 <i className='bi bi-pencil-fill'/>
                 Update Details
             </div>
