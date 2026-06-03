@@ -61,5 +61,6 @@ export default async function registerUser(imgFile, name, email, password, bio, 
     else if (response.status === 201) {
         localStorage.setItem('accessToken', result.accessToken)
         localStorage.setItem('bg', bg)
+        alert('Registered Successfully')
     }
 }

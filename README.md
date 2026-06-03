@@ -1,16 +1,135 @@
-# React + Vite
+# 🚀 Linklane
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Linklane is a customizable link-in-bio platform inspired by Linktree. It allows users to create a personalized profile, add social media or external links, customize themes and backgrounds, and share a single profile page with others.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- 🔗 Add and manage multiple social or external links
+- 🎨 Customize profile appearance and themes
+- 🖼️ Upload profile pictures
+- 🌈 Change background designs and visual styles
+- 📱 Responsive design for desktop and mobile devices
+- 👤 User authentication and profile management
+- 📤 Share your personalized profile with anyone
+- ⚡ Fast and modern user experience
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📸 Screenshots
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Registration Page
+
+![Registration Page](./screenshots/register.png)
+
+### Login Page
+
+![Login Page](./screenshots/login.png)
+
+### Public Profile Page
+
+![Public Profile](./screenshots/profile.png)
+
+### Profile Customization Dashboard
+
+![Dashboard](./screenshots/dashboard.png)
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React.js
+- Vite
+- Tailwind CSS
+- HTML5
+- CSS3
+- JavaScript
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+
+### Development Tools
+
+- VS Code
+- Git
+- GitHub
+- Canva
+
+
+---
+
+## ⚙️ Installation
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/bothrayash276/Linklane.git
+cd Linklane
+```
+
+### Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### Backend Setup
+
+```bash
+cd backend
+npm install
+npm run start
+```
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file inside the backend directory:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+PORT=5000
+JWT_SECRET=your_secret_key
+```
+
+> Never commit your `.env` file to GitHub.
+
+---
+
+## 🎯 How It Works
+
+1. Create an account.
+2. Customize your profile.
+3. Add social media and external links.
+4. Upload a profile picture and select a theme.
+5. Share your profile URL with others.
+6. Visitors can access all your important links from one page.
+
+---
+
+## 📁 Repositories
+
+### Frontend
+
+https://github.com/bothrayash276/Linklane
+
+### Backend
+
+https://github.com/bothrayash276/Linklane-Backend
+
+---
+
+## 👨‍💻 Author
+
+**Yash Bothra**
+
+GitHub: https://github.com/bothrayash276
