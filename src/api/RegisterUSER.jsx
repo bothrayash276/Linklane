@@ -37,7 +37,7 @@ export default async function registerUser(imgFile, name, email, password, bio, 
         'password' : password,
         'img_url' :  url,
         'bio' : bio,
-        'bg' : bg,
+        'bg' : 'https://res.cloudinary.com/dqwtmqxpi/image/upload/v1780505183/bg11_ngpopy.webp',
         'page_color' : pageColor
     }
 

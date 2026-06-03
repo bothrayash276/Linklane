@@ -79,9 +79,17 @@ const Personal = () => {
         
         localStorage.setItem('page_color', user.page_color)
 
-        let clr
-        if (!color) clr = user.page_color
-        else clr = ColorHex(color)
+        let clr, bg
+        if (!color) {
+            clr = user.page_color
+            bg = user.bg
+        }
+        else {
+            clr = ColorHex(color)
+            if (color === '#b0efbc') bg = 'https://res.cloudinary.com/dqwtmqxpi/image/upload/v1780505183/bg11_ngpopy.webp'
+            if (color === '#29cadb') bg = 'https://res.cloudinary.com/dqwtmqxpi/image/upload/v1780505184/bg22_xdqhsb.jpg'
+            if (color === '#e9cff6') bg = 'https://res.cloudinary.com/dqwtmqxpi/image/upload/v1780505183/bg33_xcl1vi.jpg'
+        }
 
         const userData = {
             'id' : id,
@@ -91,6 +99,7 @@ const Personal = () => {
             'password' : user.password,
             'bio' : document.getElementById('bio').value,
             'page_color' : clr,
+            'bg' : bg,
             'links' : [...user.links]
         }
 
