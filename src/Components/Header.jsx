@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { ThemeContext } from './ThemeContext'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,7 +8,7 @@ const Header = () => {
     const navigate = useNavigate()
 
     // Theme State
-    const [theme, setTheme] = useState("light")
+    const {theme, setTheme} = useContext(ThemeContext)
 
     useEffect(() => {
         const localStorageTheme = localStorage.getItem("theme") || 'light'
@@ -57,10 +58,10 @@ const Header = () => {
 
         <i 
         onClick={handleThemeChange}
-        className={`${theme ==='light' ? "" : "hidden"} bi bi-brightness-high-fill text-black text-xl`} />
+        className={`${theme ==='light' ? "" : "hidden"} bi bi-brightness-high-fill text-black text-xl cursor-pointer`} />
         <i 
         onClick={handleThemeChange}
-        className={`${theme ==='dark' ? "" : "hidden"} bi bi-moon-fill text-white`} />
+        className={`${theme ==='dark' ? "" : "hidden"} bi bi-moon-fill text-white cursor-pointer`} />
 
     </div>
 

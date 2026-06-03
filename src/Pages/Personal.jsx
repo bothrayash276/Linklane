@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import UserLinks from '../Components/Links'
@@ -6,6 +6,11 @@ import {v4 as uid} from 'uuid'
 import ColorHex from '../Components/ColorHex'
 import Header from '../Components/Header'
 import ErrorOverlay from '../Components/ErrorOverlay'
+import bg1 from '../../public/bg1.webp'
+import bg2 from '../../public/bg2.webp'
+import bg3 from '../../public/bg3.webp'
+import { ThemeContext } from '../Components/ThemeContext'
+
 
 const Personal = () => {
     const [user, setUser] = useState()
@@ -15,6 +20,7 @@ const Personal = () => {
     const [newImage, setNewImage] = useState(null)
     const [file, setFile] = useState(null)
     const [newLinkAddress, setNewLinkAddress] = useState("")
+    const {theme, setTheme, page, setPage} = useContext(ThemeContext)
     const id = useParams().id
     const navigate = useNavigate()
 
@@ -58,6 +64,7 @@ const Personal = () => {
 
     // Form
     const [error, setError] = useState(false)
+    const [color, setColor] = useState()
 
     const handleUpdateDetails = async () => {
 
@@ -68,7 +75,7 @@ const Personal = () => {
             'email' : user.email,
             'password' : user.password,
             'bio' : document.getElementById('bio').value,
-            'page_color' : ColorHex(document.getElementById('color').value),
+            'page_color' : ColorHex(color) || user.page_color,
             'links' : [...user.links]
         }
 
@@ -96,6 +103,15 @@ const Personal = () => {
         
 
     }
+
+    // handle Color
+    const handleColor = (e) => {
+        const code = e.target.id
+        localStorage.setItem('page_color', ColorHex(code))
+        setPage(code)
+        setColor(code)
+    }
+    
 
     const handleImage = async (e) => {
         const file = e.target.files[0]
@@ -148,7 +164,6 @@ const Personal = () => {
 
         setUser(newUser)
     }
-
 
     // handle New Link input change
     const handlelLinkValue = (e) => {
@@ -286,19 +301,42 @@ const Personal = () => {
 
                 {/* Accent Color */}
                 <div
-                className='w-full flex align-middle justify-center'>
+                className='w-full flex align-middle justify-between'>
                     <i
                     className='bi bi-eyedropper 
                       border-zinc-700 text-gray-500
                         border-t border-b rounded-l-lg border-l 
-                        dark:text-gray-400 p-2 px-4'/>
-                    <input 
-                    id='color'
-                    type="color"
-                    defaultValue={`rgb(${user.page_color})`}
-                    className='rounded-r-lg h-[41.6px] p-2 px-4 
-                    border not-sm:flex-1
-                    sm:min-w-120 border-zinc-700' />
+                        dark:text-gray-400 p-2 px-4 text-xl'/>
+
+                         <div
+                    className='h-[41.59] border border-zinc-700 rounded-r-lg flex-1 items-center flex overflow-hidden p-2 gap-3'>
+
+                        
+                        <img 
+                        src={bg1}
+                        id='#b0efbc'
+                        alt="" 
+                        onClick={handleColor}
+                        className='flex-1 w-1/3 object-cover h-8 cursor-pointer  ' />
+
+
+                        <img 
+                        src={bg2} 
+                        id = '#29cadb'
+                        onClick={handleColor}
+                        alt="" 
+                        className='flex-1 w-1/3 object-cover h-8 cursor-pointer' />
+                        
+                        <img 
+                        src={bg3} 
+                        id='#e9cff6'
+                        onClick={handleColor}
+                        alt="" 
+                        className='flex-1 1/3 object-cover h-8 cursor-pointer' />
+                            
+                    </div> 
+
+                    
                 </div>
             </div>
 
