@@ -8,12 +8,13 @@ import Personal from './Pages/Personal.jsx'
 import bg1 from '../public/bg11.webp'
 import bg2 from '../public/bg22.jpg'
 import bg3 from '../public/bg33.jpg'
+import bgTemp from '../public/login.jpg'
 import { useState, useEffect, useContext } from 'react'
 import { ThemeContext } from './Components/ThemeContext.jsx'
 
 const App = () => {
 
-  const [bg, setBg] = useState(localStorage.getItem('bg'))
+  const [bg, setBg] = useState(localStorage.getItem('bg') || bgTemp)
   const {page} = useContext(ThemeContext)
   useEffect(()=>{
     if (page === '#b0efbc') {
