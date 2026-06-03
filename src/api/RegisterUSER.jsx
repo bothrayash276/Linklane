@@ -1,3 +1,5 @@
+import bg from '../../public/bg11.webp'
+
 function hexToRgbString(hex) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
@@ -35,6 +37,7 @@ export default async function registerUser(imgFile, name, email, password, bio, 
         'password' : password,
         'img_url' :  url,
         'bio' : bio,
+        'bg' : bg,
         'page_color' : pageColor
     }
 
@@ -57,5 +60,6 @@ export default async function registerUser(imgFile, name, email, password, bio, 
     }
     else if (response.status === 201) {
         localStorage.setItem('accessToken', result.accessToken)
+        localStorage.setItem('bg', bg)
     }
 }

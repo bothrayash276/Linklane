@@ -24,6 +24,7 @@ const Home = () => {
                 })
 
                 const json = await response.json().catch(e => console.log(e.message))
+                localStorage.setItem('bg', json.bg)
                 setUser(json)
             }
             finally {

@@ -79,6 +79,10 @@ const Personal = () => {
         
         localStorage.setItem('page_color', user.page_color)
 
+        let clr
+        if (!color) clr = user.page_color
+        else clr = ColorHex(color)
+
         const userData = {
             'id' : id,
             'img_url' : await cloudinary(file) || user.img_url,
@@ -86,7 +90,7 @@ const Personal = () => {
             'email' : user.email,
             'password' : user.password,
             'bio' : document.getElementById('bio').value,
-            'page_color' : ColorHex(color) || user.page_color,
+            'page_color' : clr,
             'links' : [...user.links]
         }
 
