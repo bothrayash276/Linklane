@@ -21,7 +21,7 @@ const Login = () => {
     else if (e.target.id === 'password') setPassword(e.target.value)
   }
 
-  
+  // Function to login the user
   const logInUser = async () => {
     const result = await userLogin(email, password)
     if (result[0]) {
@@ -38,6 +38,7 @@ const Login = () => {
       <div
       className='min-h-screen px-10 py-5 overflow-hidden'>
 
+        {/* Loading Header */}
         <div
         className='w-full'>
           <Header />
@@ -91,9 +92,9 @@ const Login = () => {
 
         </div>
 
-        
+        {/* Password */}
         <div className="flex flex-col">
-          <label htmlFor="email"
+          <label htmlFor="password"
         className='p-2 sm:w-sm not-sm:w-60 text-lg
         text-white
         ' >
@@ -120,6 +121,7 @@ const Login = () => {
         </div>
         </div>
 
+        {/* Invalid Credentials Tag */}
         <div
         className={`text-red-600 flex gap-3 ${invalid ? " " : "hidden"}`}>
           <i className='bi bi-exclamation-triangle-fill text-lg' />
@@ -137,7 +139,7 @@ const Login = () => {
           Login
         </div>
 
-
+        {/* Button to redirect to register page */}
         <Link
         to={`/register`}
         className='hover:underline  text-[#a7cf4a]'>

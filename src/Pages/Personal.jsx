@@ -74,6 +74,7 @@ const Personal = () => {
     const [error, setError] = useState(false)
     const [color, setColor] = useState()
 
+    // Function to update details
     const handleUpdateDetails = async () => {
 
         
@@ -141,7 +142,7 @@ const Personal = () => {
         setColor(code)
     }
     
-
+    // Function to preview image
     const handleImage = async (e) => {
         const file = e.target.files[0]
         setFile(file)
@@ -149,6 +150,7 @@ const Personal = () => {
         setNewImage(url)
     }
 
+    // Cloudinary api
     const cloudinary = async (file) => {
 
         if(!file) return
@@ -253,12 +255,13 @@ const Personal = () => {
         className='flex flex-col gap-10 relative min-h-screen w-full px-10 py-5 items-center font-[JetBrains_Mono] overflow-hidden'
         >
 
+            {/* Loading Header file */}
             <div
             className='w-full'>
                 <Header />
             </div>
 
-            
+            {/* Error Message Overlay */}
            <div
            className={`${error ? "" : "hidden"}`}>
             <ErrorOverlay message={error} />
@@ -328,7 +331,7 @@ const Personal = () => {
                      text-white  outline-none min-h-50 resize-none min-w-[214.4px]' />
                 </div>
 
-                {/* Accent Color */}
+                {/* Theme Color */}
                 <div
                 className='w-full flex align-middle justify-between'>
                     <i
@@ -512,8 +515,7 @@ const Personal = () => {
                 })}
             </div>
 
-            {/* Save Details Button */}
-
+            {/* Update Details Button */}
             <div
             onClick={handleUpdateDetails}
             className={`flex gap-3 text-white p-2 px-4 rounded-full cursor-pointer`}

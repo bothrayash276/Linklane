@@ -1,5 +1,7 @@
 import bg from '../../public/bg11.webp'
 
+
+// Function to convert HEX Code to RGB Code
 function hexToRgbString(hex) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
@@ -9,6 +11,7 @@ function hexToRgbString(hex) {
 }
 
 
+// Function to upload profile photo into cloudinary
 const cloudinary = async (file) => {
         const formData = new FormData()
 
@@ -26,11 +29,16 @@ const cloudinary = async (file) => {
     }
 
 
+// Functino to register a new user
 export default async function registerUser(imgFile, name, email, password, bio, pageHex, setError) {
+    
+    // Uploading the image and getting the image url
     const url = await cloudinary(imgFile)
+
     // Converting hex to rgb
     const pageColor = hexToRgbString(pageHex)
 
+    // User data object
     const userData = {
         'name' : name,
         'email' : email,
@@ -41,6 +49,7 @@ export default async function registerUser(imgFile, name, email, password, bio, 
         'page_color' : pageColor
     }
 
+    // Fetching a post request to the backend to upload data
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/register`, {
         method : 'POST',
         headers : {
@@ -49,6 +58,7 @@ export default async function registerUser(imgFile, name, email, password, bio, 
         body : JSON.stringify(userData)
     })
 
+    // Converting the response into json file
     const result = await response.json()
 
     if(response.status === 409) {

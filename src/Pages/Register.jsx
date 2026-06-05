@@ -14,6 +14,7 @@ const Register = () => {
     const [image, setImage] = useState(null)
     const [file, setFile] = useState(null)
 
+    // Function to handle image change 
     const handleImageChange = async (e) => {
         const imageObject = e.target.files[0]
         const imageFile = URL.createObjectURL(imageObject)
@@ -37,6 +38,8 @@ const Register = () => {
     }
 
     const [error, setError] = useState(false)
+
+    // Function to register handle user
     const handleRegister = async () => {
         if (!name || !email || !password || !bio || !file) {
             setEmpty(true)
@@ -51,6 +54,7 @@ const Register = () => {
         <div
         className='min-h-screen px-10 py-5 relative overflow-hidden'>
 
+            {/* Loading Header */}
             <div
             className='w-full'>
                 <Header />
@@ -195,6 +199,7 @@ const Register = () => {
                     Register
                 </div>
 
+                {/* Redirect button to Login page */}
                 <Link
                     to={`/login`}
                     className='hover:underline text-[#a7cf4a]'>

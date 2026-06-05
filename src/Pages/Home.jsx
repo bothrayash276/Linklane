@@ -12,6 +12,7 @@ const Home = () => {
     const [loading, setLoading] = useState(true)
     const {colorCode} = useContext(ThemeContext)
     
+    // Function to load the data
     useEffect(() => {
         const getData = async () => {
             try {
@@ -36,6 +37,8 @@ const Home = () => {
     }, [])
 
     const [copy, setCopy] = useState(false)
+
+    // Function to copy the profile sharable link
     const copyToClipboard = async () => {
         const FRONTEND = import.meta.env.VITE_FRONTEND_URI
         await navigator.clipboard.writeText(`${FRONTEND}/${id}`)
@@ -56,6 +59,7 @@ const Home = () => {
     className={`min-h-screen w-full flex flex-col items-center gap-5 px-10 py-5 relative`}
     style={{ backgroundColor : `rgb(${user.page_color}, 0.2)`}}>
 
+        {/* Loading the header */}
         <div
         className='w-full'>
             <Header />
@@ -78,12 +82,14 @@ const Home = () => {
             <div
             className='flex flex-col justify-center'>
 
+                {/* Name */}
                 <div 
                 className='text-4xl not-sm:text-2xl font-bold font-[JetBrains_Mono] not-sm:text-center'
                 style={{ color : `rgb(${user.page_color})` }} >
                     {user.name}
                 </div>
 
+                {/* Bio */}
                 <div
                 className='text-[rgb(255,255,255,0.4)]
                  font-[JetBrains_Mono] text-sm not-sm:text-center'>
@@ -92,6 +98,7 @@ const Home = () => {
 
             </div>
 
+            {/* Share Button */}
             <div
             className='flex-1 justify-end flex items-center'
             >
