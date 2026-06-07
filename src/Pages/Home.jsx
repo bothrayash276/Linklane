@@ -127,8 +127,6 @@ const Home = () => {
                         address={link.address}
                         status={link.status}
                         page_color={colorCode[user.page_color]} />
-
-                        {console.log(user.page_color)}
                     </>
                 )
             })
