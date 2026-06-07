@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import UserLinks from '../Components/Links'
 import {v4 as uid} from 'uuid'
 import ColorHex, { ColorRGB } from '../Components/ColorHex'
+import Loading from '../Components/Loading'
 import Header from '../Components/Header'
 import ErrorOverlay from '../Components/ErrorOverlay'
 import bg1 from '../../public/bg1.webp'
@@ -247,7 +248,7 @@ const Personal = () => {
     }
 
 
-    if (loading) return (<>Loading...</>)
+    if (loading) return ( <Loading /> )
 
   return (
     <> 

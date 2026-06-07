@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import UserLinks from '../Components/Links'
+import Loading from '../Components/Loading'
 import Header from '../Components/Header'
 import { ThemeContext } from '../Components/ThemeContext'
 
@@ -50,7 +51,7 @@ const Home = () => {
     }
 
 
-    if (loading) return (<>Loading...</>)
+    if (loading) return ( <Loading /> )
     const color = user.page_color
 
     return (
